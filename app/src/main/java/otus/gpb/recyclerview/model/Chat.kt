@@ -4,6 +4,7 @@ data class Chat(
     val profileImage: Int,
     val name: String,
     val status: String,
+    val haveStatus: Boolean,
     val isMuted: Boolean,
     val isVerified: Boolean,
     val lastMessage: String,
