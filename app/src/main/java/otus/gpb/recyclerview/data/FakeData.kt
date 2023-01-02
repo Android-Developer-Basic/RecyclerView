@@ -1,23 +1,39 @@
-package otus.gpb.recyclerview.model
+package otus.gpb.recyclerview.data
 
 import otus.gpb.recyclerview.R
 
 class FakeData {
     // имена взяты с сайта https://www.fakenamegenerator.com/
     private val nameList = listOf(
-        "Eddie Castillon",
-        "Vicente Crider",
-        "Allan Miller",
-        "Howard Lindsey",
-        "Geoffrey Silverberg",
-        "Jena Tucker",
-        "Beatris Stapleton",
-        "Derek Cruz",
-        "Chris Quintero",
-        "Ebony Murphy",
-        "Delbert Provencher",
-        "Scott Gardner",
-        "Betty Haffey"
+        "Eddie",
+        "Vicente",
+        "Allan",
+        "Howard",
+        "Geoffrey",
+        "Jena",
+        "Beatris",
+        "Derek",
+        "Chris",
+        "Ebony",
+        "Delbert",
+        "Scott",
+        "Betty"
+    )
+
+    private val lastNameList = listOf(
+        "Castillon",
+        "Crider",
+        "Miller",
+        "Lindsey",
+        "Silverberg",
+        "Tucker",
+        "Stapleton",
+        "Cruz",
+        "Quintero",
+        "Murphy",
+        "Provencher",
+        "Gardner",
+        "Haffey"
     )
 
     // статусы взяты с сайта https://randomwordgenerator.com/
@@ -49,22 +65,22 @@ class FakeData {
         R.drawable.account_circle_yellow
     )
 
-    fun getFakeName() = nameList.shuffled().first()
+    fun getFakeName() = "${nameList.random()} ${lastNameList.random()}"
 
-    fun getFakeStatus() = statusList.shuffled().first()
+    fun getFakeStatus() = statusList.random()
 
-    fun getFakeLastMessage() = lastMessagePreview.shuffled().first()
+    fun getFakeLastMessage() = lastMessagePreview.random()
 
-    fun getFakeBoolean() = listOf(true, false).shuffled().first()
+    fun getFakeBoolean() = listOf(true, false).random()
 
-    fun getFakeProfileImage() = imageList.shuffled().first()
+    fun getFakeProfileImage() = imageList.random()
 
-    fun getFakeCounter() = listOf(0, 11, 0, 7, 3, 15, 0, 9, 5).shuffled().first()
+    fun getFakeCounter() = listOf(0, 11, 0, 7, 3, 15, 0, 9, 5).random()
 
     fun getFakeDate(): String {
-        val hour = (10..23).shuffled().first()
-        val minutes = (10..59).shuffled().first()
-        val amPm = listOf("AM", "PM").shuffled().first()
+        val hour = (10..23).random()
+        val minutes = (10..59).random()
+        val amPm = listOf("AM", "PM").random()
 
         return "$hour:$minutes $amPm"
     }
