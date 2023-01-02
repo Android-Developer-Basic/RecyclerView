@@ -15,12 +15,14 @@ class ChatViewHolder(private val binding: ChatItemBinding) : ViewHolder(binding.
             lastMsgPreview.text = item.lastMessage
             date.text = item.date
             messageCounter.text = item.messageCount.toString()
-            verified.visibility = if (item.isVerified) View.VISIBLE else View.GONE
-            muted.visibility = if (item.isMuted) View.VISIBLE else View.GONE
-            status.visibility = if (item.haveStatus) View.VISIBLE else View.GONE
-            done.visibility = if (item.isDone && !item.isDoneAll) View.VISIBLE else View.GONE
-            doneAll.visibility = if (item.isDoneAll) View.VISIBLE else View.GONE // пофиксить
-            messageCountCircle.visibility = if (item.messageCount > 0) View.VISIBLE else View.GONE
+            verified.visibility = setVisibility(item.isVerified)
+            muted.visibility = setVisibility(item.isMuted)
+            status.visibility = setVisibility(item.haveStatus)
+            done.visibility = setVisibility(item.isDone && !item.isDoneAll)
+            doneAll.visibility = setVisibility(item.isDoneAll)
+            messageCountCircle.visibility = setVisibility(item.messageCount > 0)
         }
     }
+
+    private fun setVisibility(flag: Boolean) = if (flag) View.VISIBLE else View.GONE
 }
