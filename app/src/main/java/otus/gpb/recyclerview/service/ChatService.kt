@@ -1,13 +1,14 @@
-package otus.gpb.recyclerview.model
+package otus.gpb.recyclerview.service
 
-object ChatService {
+import otus.gpb.recyclerview.data.FakeData
+import otus.gpb.recyclerview.model.Chat
 
-    private var chatList = mutableListOf<Chat>()
+class ChatService {
 
-    init {
+    fun getChatList() : MutableList<Chat> {
         val fake = FakeData()
 
-        val generate = (1..20).map {
+        val generate = (1..10).map {
             with(fake) {
                 Chat(
                     profileImage = getFakeProfileImage(),
@@ -25,8 +26,6 @@ object ChatService {
             }
         }
 
-        chatList = generate.toMutableList()
+        return generate.toMutableList()
     }
-
-    fun getChatList() = chatList
 }

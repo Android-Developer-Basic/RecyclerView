@@ -3,6 +3,7 @@ package otus.gpb.recyclerview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.divider.MaterialDividerItemDecoration.VERTICAL
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val adapter by lazy {
-        ChatAdapter(ChatService.getChatList())
+        ChatAdapter(ChatService().getChatList())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +59,20 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             recyclerView.adapter = adapter
             recyclerView.addItemDecoration(decorator)
+
+            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val totalItems = recyclerView.layoutManager!!.itemCount
+                    val lastVisibleItem =
+                        (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+                    if (lastVisibleItem == totalItems - 1) {
+                        adapter.addItems()
+                    }
+                }
+            })
 
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }

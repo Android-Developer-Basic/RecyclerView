@@ -1,6 +1,7 @@
 package otus.gpb.recyclerview
 
-import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import otus.gpb.recyclerview.databinding.ChatItemBinding
 import otus.gpb.recyclerview.model.Chat
@@ -24,5 +25,5 @@ class ChatViewHolder(private val binding: ChatItemBinding) : ViewHolder(binding.
         }
     }
 
-    private fun setVisibility(flag: Boolean) = if (flag) View.VISIBLE else View.GONE
+    private fun setVisibility(flag: Boolean) = if (flag) VISIBLE else GONE
 }

@@ -2,6 +2,9 @@ package otus.gpb.recyclerview.data
 
 import otus.gpb.recyclerview.R
 
+/**
+ * Класс генерации фиктивных данных для модели
+ */
 class FakeData {
     // имена взяты с сайта https://www.fakenamegenerator.com/
     private val nameList = listOf(
