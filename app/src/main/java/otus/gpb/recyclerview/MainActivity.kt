@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val adapter by lazy {
+    private val chatAdapter by lazy {
         ChatAdapter(ChatService().getChatList())
     }
 
@@ -52,27 +52,29 @@ class MainActivity : AppCompatActivity() {
             ) = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                adapter.removeItem(viewHolder.adapterPosition)
+                chatAdapter.removeItem(viewHolder.adapterPosition)
             }
         })
 
         with(binding) {
-            recyclerView.adapter = adapter
-            recyclerView.addItemDecoration(decorator)
+            recyclerView.apply {
+                adapter = chatAdapter
+                addItemDecoration(decorator)
 
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
 
-                    val totalItems = recyclerView.layoutManager!!.itemCount
-                    val lastVisibleItem =
-                        (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                        val totalItems = recyclerView.layoutManager!!.itemCount
+                        val lastVisibleItem =
+                            (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
 
-                    if (lastVisibleItem == totalItems - 1) {
-                        adapter.addItems()
+                        if (lastVisibleItem == totalItems - 1) {
+                            chatAdapter.addItems()
+                        }
                     }
-                }
-            })
+                })
+            }
 
             itemTouchHelper.attachToRecyclerView(recyclerView)
         }

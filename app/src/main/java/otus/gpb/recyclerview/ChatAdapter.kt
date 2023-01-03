@@ -1,6 +1,5 @@
 package otus.gpb.recyclerview
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -27,9 +26,8 @@ class ChatAdapter(private val listItem: MutableList<Chat>) : Adapter<ChatViewHol
         notifyItemRemoved(position)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun addItems() {
         listItem.addAll(ChatService().getChatList())
-        notifyDataSetChanged()
+        notifyItemInserted(listItem.lastIndex)
     }
 }
