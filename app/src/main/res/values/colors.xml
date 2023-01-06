@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="dividerColor">#D9D9D9</color>
+    <color name="swipedBackground">#66A9E0</color>
 </resources>

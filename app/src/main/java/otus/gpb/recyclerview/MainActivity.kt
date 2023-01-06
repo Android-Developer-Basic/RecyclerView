@@ -1,7 +1,10 @@
 package otus.gpb.recyclerview
 
+import android.graphics.Canvas
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +41,55 @@ class MainActivity : AppCompatActivity() {
         }
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
+
+            private val background =
+                ColorDrawable(resources.getColor(R.color.swipedBackground, theme))
+            private val icon = ResourcesCompat.getDrawable(resources, R.drawable.archive, theme)
+            private val iconWidth = icon?.intrinsicWidth
+            private val iconHeight = icon?.intrinsicHeight
+            private val iconMargin = resources.getDimensionPixelSize(R.dimen.archive_icon_margin)
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                val itemView = viewHolder.itemView
+
+                with(background) {
+                    setBounds(
+                        itemView.right + dX.toInt(),
+                        itemView.top,
+                        itemView.right,
+                        itemView.bottom
+                    )
+                    draw(c)
+                }
+
+                val iconLeft = itemView.right - iconWidth!! - iconMargin
+                val iconRight = itemView.right - iconMargin
+                val verticalMargin = (itemView.height - iconHeight!!) / 2
+                val iconTop = itemView.top + verticalMargin
+                val iconBottom = itemView.bottom - verticalMargin
+
+                icon?.setBounds(iconLeft, iconTop, iconRight, iconBottom)
+                icon?.draw(c)
+
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
+            }
+
             override fun getMovementFlags(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
