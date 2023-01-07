@@ -1,11 +1,12 @@
 package otus.gpb.recyclerview
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.icu.lang.UCharacter.VerticalOrientation
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Rect
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -14,11 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import otus.gpb.recyclerview.databinding.ActivityMainBinding
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
+
+
 
     private val adapter by lazy {
         Adapter(
@@ -58,6 +62,45 @@ class MainActivity : AppCompatActivity() {
                     showRemoveItemDialog(viewHolder.adapterPosition)
                 }
             }
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                Log.d("onChildDraw", "dx: " + dX)
+                val trashBinIcon = resources.getDrawable(
+                    R.drawable.ic_baseline_delete_forever_24,
+                    null
+                )
+                Log.d("onChildDraw", trashBinIcon.minimumWidth.toString())
+                if(dX > -900)
+                    c.drawColor(Color.GRAY)
+                else
+                    c.drawColor(Color.RED)
+
+                trashBinIcon.bounds = Rect(
+                    viewHolder.itemView.right - trashBinIcon.minimumWidth,
+                    viewHolder.itemView.top + trashBinIcon.minimumWidth,
+                    viewHolder.itemView.right,
+                    viewHolder.itemView.top + trashBinIcon.intrinsicHeight
+                            + trashBinIcon.minimumWidth
+                )
+                trashBinIcon.draw(c)
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
+            }
+
         })
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
         binding.recyclerView.addOnScrollListener(object : Pagination(binding.recyclerView.layoutManager as LinearLayoutManager) {
@@ -74,6 +117,7 @@ class MainActivity : AppCompatActivity() {
                 //you have to call loadmore items to get more data
                 getMoreItems()
             }
+
         })
     }
 
