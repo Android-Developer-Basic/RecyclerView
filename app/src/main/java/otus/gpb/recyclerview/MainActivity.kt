@@ -1,12 +1,12 @@
 package otus.gpb.recyclerview
 
-import android.content.DialogInterface
+import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.graphics.drawable.ClipDrawable.VERTICAL
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.LEFT
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import otus.gpb.recyclerview.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -38,11 +38,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupView() {
         binding.recycler.adapter = adapter
 
-        val decorator = DividerItemDecoration(this, VERTICAL).apply {
-            val drawable =
-                ResourcesCompat.getDrawable(resources, R.drawable.decorator, theme) ?: return
-            setDrawable(drawable)
-        }
+        val decorator = DividerItemDecoration(this, HORIZONTAL)
+
         binding.recycler.addItemDecoration(decorator)
 
         binding.recycler.setOnScrollChangeListener { recyclerView, p1, p2, p3, p4 ->
@@ -53,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(-1, LEFT) {
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, LEFT) {
 
             override fun onMove(
                 recyclerView: RecyclerView,
