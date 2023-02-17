@@ -13,4 +13,25 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="NameStyle">
+        <item name="android:textColor">#222222</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="StatusStyle">
+        <item name="android:textColor">#434449</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="LastMessageStyle">
+        <item name="android:textColor">#8D8E90</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DateStyle">
+        <item name="android:textColor">#95999A</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
 </resources>
