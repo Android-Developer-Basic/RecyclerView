@@ -1,15 +1,10 @@
 package otus.gpb.recyclerview
 
 import android.annotation.SuppressLint
-import android.content.ClipData
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import otus.gpb.recyclerview.databinding.ChatItemBinding
 
 class ChatAdapter(

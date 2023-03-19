@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ChatAdapter
     private var mItemTouchHelper: ItemTouchHelper? = null
-    var hasItemToAdd = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
         mItemTouchHelper = ItemTouchHelper(callback)
         mItemTouchHelper?.attachToRecyclerView(binding.recyclerView)
-
-        binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
-                .apply { setDrawable(R.drawable.divivder_drawable.toDrawable()) }
-        )
 
         binding.recyclerView.setOnScrollChangeListener { recyclerView, p1, p2, p3, p4 ->
             val  layoutManager = (recyclerView as RecyclerView).layoutManager

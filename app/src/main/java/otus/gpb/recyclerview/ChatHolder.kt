@@ -1,5 +1,7 @@
 package otus.gpb.recyclerview
 
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,6 +22,7 @@ class ChatHolder(val binding: ChatItemBinding): RecyclerView.ViewHolder(binding.
 
         if (chat.isScam){
             scam.visibility = View.VISIBLE
+
         }
 
         if (chat.isMute){
@@ -63,6 +66,11 @@ class ChatHolder(val binding: ChatItemBinding): RecyclerView.ViewHolder(binding.
         if (chat.numberMessage > 0){
             numberMessage.visibility = View.VISIBLE
             numberMessageIcon.visibility = View.VISIBLE
+            Glide.with(numberMessageIcon)
+                .load(R.drawable.circle)
+                .placeholder(android.R.drawable.ic_popup_sync)
+                .error(android.R.drawable.stat_notify_error)
+                .into(numberMessageIcon)
             numberMessage.text = chat.numberMessage.toString()
         }
 
