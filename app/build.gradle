@@ -6,9 +6,13 @@ plugins {
 android {
     compileSdk 32
 
+    viewBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "otus.gpb.recyclerview"
-        minSdk 23
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
