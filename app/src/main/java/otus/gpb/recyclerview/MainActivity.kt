@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
                 lastMessage = "How are you?",
                 date = "Fri",
                 isMuted = true,
-                isVerified = true
+                isVerified = true,
+                unreadMessageCount = 1111
             ),
             ChatItem(
                 id = ++id,
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 lastMessage = "Yes, it happened.",
                 date = "Thu",
                 isVerified = true,
-                hasUnreadMessage = true
+                unreadMessageCount = 1
             ),
             ChatItem(
                 id = ++id,
@@ -86,7 +87,20 @@ class MainActivity : AppCompatActivity() {
                 isLastMessageMine = true,
                 isMessageDelivered = true,
                 isMessageRead = true
+            ),
+            ChatItem(
+                id = ++id,
+                userName = "all icons check",
+                lastMessage = "Checked",
+                date = "Tue",
+                isScam = true,
+                isVerified = true,
+                isMuted = true,
+                unreadMessageCount = 3,
+                isLastMessageMine = true,
+                isMessageDelivered = true,
+                isMessageRead = true
             )
-            )
+        )
     }
 }

@@ -15,5 +15,5 @@ data class ChatItem(
     val isMessageDelivered: Boolean = false,
     val isMessageRead:Boolean = false,
 
-    val hasUnreadMessage: Boolean = false
+    val unreadMessageCount: Int = 0
 )

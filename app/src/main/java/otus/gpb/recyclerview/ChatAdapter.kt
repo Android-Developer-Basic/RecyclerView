@@ -29,6 +29,11 @@ class ChatAdapter : RecyclerView.Adapter<ChatItemViewHolder>() {
         list.addAll(data)
         notifyDataSetChanged()
     }
+
+    fun addItem(item: ChatItem) {
+        list.add(item)
+        notifyItemInserted(list.lastIndex)
+    }
 }
 
 class ChatItemViewHolder(
@@ -37,24 +42,33 @@ class ChatItemViewHolder(
 
     fun bind(item: ChatItem) {
         with(binding) {
-            userName.text = item.userName
-            messageText.text = item.lastMessage
-            date.text = item.date
-
-            userAvatar.setImageResource(R.drawable.stub_ava)
-
-            setIcons(this, item)
+            setupWithItem(item)
         }
     }
 
-    private fun setIcons(binding: ChatItemLayoutBinding, item: ChatItem) {
-        if (item.isMuted) binding.mutedImage.visibility = View.VISIBLE
-        if (item.isVerified) binding.verifiedImage.visibility = View.VISIBLE
-        if (item.hasUnreadMessage) binding.unreadMessage.visibility = View.VISIBLE
-        if (item.isScam) binding.scamIcon.visibility = View.VISIBLE
+    private fun ChatItemLayoutBinding.setupWithItem(item: ChatItem) {
+        userName.text = item.userName
+        messageText.text = item.lastMessage
+        date.text = item.date
+        userAvatar.setImageResource(R.drawable.stub_ava)
 
-        if (item.isLastMessageMine) binding.messageStatus.visibility = View.VISIBLE
-        binding.messageStatus.isSelected = item.isMessageDelivered && item.isMessageRead
+        mutedImage.visibility = setIconVisibility(item.isMuted)
+        verifiedImage.visibility = setIconVisibility(item.isVerified)
+        scamIcon.visibility = setIconVisibility(item.isScam)
+        messageStatus.visibility = setIconVisibility(item.isLastMessageMine)
+        messageStatus.isSelected = item.isMessageDelivered && item.isMessageRead
 
+        if (item.unreadMessageCount > 0) {
+            unreadMessage.visibility = View.VISIBLE
+            unreadMessage.text = item.unreadMessageCount.countToText()
+        }
+    }
+
+    private fun setIconVisibility(condition: Boolean): Int {
+        return if (condition) View.VISIBLE else View.GONE
+    }
+
+    private fun Int.countToText(): String {
+        return if (this > 999) "1k+" else "$this"
     }
 }
