@@ -16,4 +16,6 @@ data class ChatItem(
     val isMessageRead:Boolean = false,
 
     val unreadMessageCount: Int = 0
-)
+) {
+    val onClickListener: ((item: ChatItem) -> Unit)? = null
+}

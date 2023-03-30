@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import otus.gpb.recyclerview.databinding.ChatItemLayoutBinding
 
-class ChatAdapter : RecyclerView.Adapter<ChatItemViewHolder>() {
+class ChatAdapter(
+    private val listener: OnInteractionListener
+) : RecyclerView.Adapter<ChatItemViewHolder>() {
 
     private val list = mutableListOf<ChatItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatItemViewHolder {
         val binding =
             ChatItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ChatItemViewHolder(binding)
+        return ChatItemViewHolder(listener,binding)
     }
 
     override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) {
@@ -37,6 +39,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatItemViewHolder>() {
 }
 
 class ChatItemViewHolder(
+    private val listener: OnInteractionListener,
     private val binding: ChatItemLayoutBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -61,6 +64,10 @@ class ChatItemViewHolder(
         if (item.unreadMessageCount > 0) {
             unreadMessage.visibility = View.VISIBLE
             unreadMessage.text = item.unreadMessageCount.countToText()
+        }
+
+        itemView.setOnClickListener {
+            listener.onBindingClick(item)
         }
     }
 

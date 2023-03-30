@@ -9,7 +9,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val chatAdapter: ChatAdapter by lazy {
-        ChatAdapter()
+        ChatAdapter(object : OnInteractionListener {
+            override fun onBindingClick(item: ChatItem) {
+                chatAdapter.addItem(
+                    item.copy(id = ++id,
+                        userName = "${item.userName} ($id)"
+                    )
+                )
+            }
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
