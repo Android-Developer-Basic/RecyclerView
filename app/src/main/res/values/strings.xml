@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+    <string name="new_messages_count">new messages count indicator</string>
 </resources>
