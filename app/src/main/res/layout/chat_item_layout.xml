@@ -19,20 +19,22 @@
 
     <TextView
         android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/chat_item_margin_8"
         android:layout_marginTop="@dimen/chat_item_margin_8"
         android:fontFamily="@font/inter_bold"
         android:textColor="@color/black"
         android:text="TextView"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/chat_item_margin_8"
         android:layout_marginEnd="@dimen/chat_item_margin_16"

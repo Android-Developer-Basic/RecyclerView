@@ -20,6 +20,7 @@ class ChatAdapter(
     }
 
     override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) {
+
         val item = list[position]
         holder.bind(item)
     }

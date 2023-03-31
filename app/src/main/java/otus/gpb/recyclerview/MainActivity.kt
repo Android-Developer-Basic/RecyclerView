@@ -1,9 +1,15 @@
 package otus.gpb.recyclerview
 
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import otus.gpb.recyclerview.databinding.ActivityMainBinding
+import otus.gpb.recyclerview.databinding.ChatItemLayoutBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,9 +18,7 @@ class MainActivity : AppCompatActivity() {
         ChatAdapter(object : OnInteractionListener {
             override fun onBindingClick(item: ChatItem) {
                 chatAdapter.addItem(
-                    item.copy(id = ++id,
-                        userName = "${item.userName} ($id)"
-                    )
+                    item.copy(id = ++id)
                 )
             }
         })
@@ -26,12 +30,39 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerView.apply {
+//        // DividerDecoration
+//        val dividerDrawable = AppCompatResources.getDrawable(this,R.drawable.divider)
+//        val dividerDecoration = DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL).apply {
+//            dividerDrawable?.let { setDrawable(it) }
+//        }
+//        binding.recyclerView.apply {
+//            layoutManager = LinearLayoutManager(this@MainActivity)
+//            adapter = chatAdapter
+//            addItemDecoration(MyDecoration())
+//            addItemDecoration(dividerDecoration)
+//        }
+//        chatAdapter.populate(stubItems)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // DividerDecoration
+        val divideDrawable = AppCompatResources.getDrawable(this,R.drawable.divider)
+        val dividerDecoration = MaterialDividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL).apply {
+            dividerInsetStart = 250
+            isLastItemDecorated = true
+            dividerColor = resources.getColor(R.color.grey_100, theme)
+            dividerThickness = 2
+        }
+
+            binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = chatAdapter
+            addItemDecoration(MyDecoration(this@MainActivity))
         }
         chatAdapter.populate(stubItems)
-
     }
 
     companion object {
@@ -99,6 +130,19 @@ class MainActivity : AppCompatActivity() {
             ChatItem(
                 id = ++id,
                 userName = "all icons check",
+                lastMessage = "Checked",
+                date = "Tue",
+                isScam = true,
+                isVerified = true,
+                isMuted = true,
+                unreadMessageCount = 3,
+                isLastMessageMine = true,
+                isMessageDelivered = true,
+                isMessageRead = true
+            ),
+            ChatItem(
+                id = ++id,
+                userName = "all icons check111111",
                 lastMessage = "Checked",
                 date = "Tue",
                 isScam = true,
