@@ -49,10 +49,9 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         // DividerDecoration
-        val divideDrawable = AppCompatResources.getDrawable(this,R.drawable.divider)
         val dividerDecoration = MaterialDividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL).apply {
             dividerInsetStart = 250
-            isLastItemDecorated = true
+            isLastItemDecorated = false
             dividerColor = resources.getColor(R.color.grey_100, theme)
             dividerThickness = 2
         }
@@ -60,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = chatAdapter
+//            addItemDecoration(dividerDecoration)
             addItemDecoration(MyDecoration(this@MainActivity))
         }
         chatAdapter.populate(stubItems)
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
             ),
             ChatItem(
                 id = ++id,
-                userName = "all icons check111111",
+                userName = "all icons long text check",
                 lastMessage = "Checked",
                 date = "Tue",
                 isScam = true,

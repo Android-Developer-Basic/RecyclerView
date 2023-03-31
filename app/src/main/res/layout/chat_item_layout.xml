@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/chat_item_margin_8"
         android:fontFamily="@font/inter_semibold"
-        android:text="SCAM"
+        android:text="@string/scam"
         android:paddingHorizontal="6dp"
         android:background="@drawable/style_spam_text"
         android:gravity="center"
