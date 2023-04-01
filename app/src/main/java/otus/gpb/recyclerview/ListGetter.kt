@@ -3,7 +3,7 @@ package otus.gpb.recyclerview
 class ListGetter {
 
     fun getList(): MutableList<ChatItemData> {
-        val list = mutableListOf<ChatItemData>(
+        return mutableListOf(
             ChatItemData(
                 avatar = R.drawable.avatar_1,
                 name = "Pizza",
@@ -47,6 +47,5 @@ class ListGetter {
                 isRead = true
             )
         )
-        return list
     }
 }

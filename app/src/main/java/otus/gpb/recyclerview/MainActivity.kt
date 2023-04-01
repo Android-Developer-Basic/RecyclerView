@@ -15,10 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     private val data = ListGetter().getList()
 
-
     private val chatAdapter: ChatAdapter by lazy {
         ChatAdapter()
     }
+
+    var isLastPage: Boolean = false
+    var isLoading: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +29,24 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val layoutManager = LinearLayoutManager(this@MainActivity)
 
-        //DELETE
-        //repeat(10) { data.addAll(ListGetter().getList()) }
-
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = chatAdapter
         chatAdapter.submitData(data)
-        recyclerView.addOnScrollListener(PageScrollListener(layoutManager).apply {
-            setOnLoadMoreListener {
-                //Toast.makeText(this, "PAGING", Toast.LENGTH_LONG).show()
+
+        //pagination
+        recyclerView.addOnScrollListener(object : PageScrollListener(layoutManager) {
+            override fun isLastPage(): Boolean {
+                return isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+
+            override fun loadMoreItems() {
+                isLoading = true
+                getMoreItems()
+                Toast.makeText(this@MainActivity, "loadMoreItems", Toast.LENGTH_LONG).show()
             }
         })
 
@@ -96,6 +107,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    // for pagination
+    private fun getMoreItems() {
+        isLoading = false
+        chatAdapter.addData(ListGetter().getList())
     }
 }
 

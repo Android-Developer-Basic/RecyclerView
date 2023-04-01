@@ -33,4 +33,8 @@ class ChatAdapter : RecyclerView.Adapter<ChatViewHolder>() {
         list.removeAt(position)
     }
 
+    fun addData(listItems: MutableList<ChatItemData>) {
+        this.list.addAll(listItems)
+        notifyItemRangeChanged(0, 10)
+    }
 }

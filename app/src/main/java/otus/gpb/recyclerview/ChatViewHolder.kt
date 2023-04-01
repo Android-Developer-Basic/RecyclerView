@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun returnView ():View{
+    fun returnView(): View {
         return itemView.findViewById(R.id.upper_layer)
     }
 
@@ -35,11 +35,16 @@ class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 }
             }
 
-            if (chatItemData.isVerified) findViewById<ImageView>(R.id.verified_icon).visibility = View.VISIBLE
-            if (chatItemData.isMute) findViewById<ImageView>(R.id.mute_icon).visibility = View.VISIBLE
-            if (chatItemData.isScam) findViewById<ImageView>(R.id.scam_icon).visibility = View.VISIBLE
-            if (chatItemData.isCheck) findViewById<ImageView>(R.id.check_icon).visibility = View.VISIBLE
-            if (chatItemData.isRead) findViewById<ImageView>(R.id.read_icon).visibility = View.VISIBLE
+            if (chatItemData.isVerified) findViewById<ImageView>(R.id.verified_icon).visibility =
+                View.VISIBLE
+            if (chatItemData.isMute) findViewById<ImageView>(R.id.mute_icon).visibility =
+                View.VISIBLE
+            if (chatItemData.isScam) findViewById<ImageView>(R.id.scam_icon).visibility =
+                View.VISIBLE
+            if (chatItemData.isCheck) findViewById<ImageView>(R.id.check_icon).visibility =
+                View.VISIBLE
+            if (chatItemData.isRead) findViewById<ImageView>(R.id.read_icon).visibility =
+                View.VISIBLE
         }
     }
 }

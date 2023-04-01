@@ -3,26 +3,26 @@ package otus.gpb.recyclerview
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class PageScrollListener(private val layoutManager: LinearLayoutManager) :
+abstract class PageScrollListener(private val layoutManager: LinearLayoutManager) :
     RecyclerView.OnScrollListener() {
 
-    private var onLoadMore: (() -> Unit)? = null
+    abstract fun isLastPage(): Boolean
+
+    abstract fun isLoading(): Boolean
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
 
-        val totalItemCount = layoutManager.itemCount
         val visibleItemCount = layoutManager.childCount
-        val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
+        val totalItemCount = layoutManager.itemCount
+        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-        if ((visibleItemCount + firstVisiblePosition) >= totalItemCount) {
-            onLoadMore?.invoke()
+        if (!isLoading() && !isLastPage()) {
+            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+                loadMoreItems()
+            }
         }
-
     }
 
-    fun setOnLoadMoreListener (callback : () -> Unit){
-        onLoadMore = callback
-    }
-
+    abstract fun loadMoreItems()
 }
