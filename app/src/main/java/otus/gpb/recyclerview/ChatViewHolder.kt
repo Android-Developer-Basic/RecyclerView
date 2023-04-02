@@ -1,14 +1,15 @@
 package otus.gpb.recyclerview
 
-import android.opengl.Visibility
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun returnView(): View {
+    fun returnUpperView(): View {
         return itemView.findViewById(R.id.upper_layer)
     }
 
@@ -21,30 +22,45 @@ class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             findViewById<TextView>(R.id.time).text = chatItemData.time
 
             if (chatItemData.cont > 0) {
-                findViewById<ImageView>(R.id.counter_icon).visibility = View.VISIBLE
+                findViewById<ImageView>(R.id.counter_icon).visibility = VISIBLE
                 findViewById<TextView>(R.id.counter_text).apply {
                     text = chatItemData.cont.toString()
-                    visibility = View.VISIBLE
+                    visibility = VISIBLE
                 }
+            } else {
+                findViewById<ImageView>(R.id.counter_icon).visibility = GONE
+                findViewById<TextView>(R.id.counter_text).visibility = GONE
             }
 
             if (chatItemData.author != "") {
                 findViewById<TextView>(R.id.author).apply {
                     text = chatItemData.author
-                    visibility = View.VISIBLE
+                    visibility = VISIBLE
                 }
+            } else {
+                findViewById<TextView>(R.id.author).visibility = GONE
             }
 
-            if (chatItemData.isVerified) findViewById<ImageView>(R.id.verified_icon).visibility =
-                View.VISIBLE
-            if (chatItemData.isMute) findViewById<ImageView>(R.id.mute_icon).visibility =
-                View.VISIBLE
-            if (chatItemData.isScam) findViewById<ImageView>(R.id.scam_icon).visibility =
-                View.VISIBLE
-            if (chatItemData.isCheck) findViewById<ImageView>(R.id.check_icon).visibility =
-                View.VISIBLE
-            if (chatItemData.isRead) findViewById<ImageView>(R.id.read_icon).visibility =
-                View.VISIBLE
+
+            if (chatItemData.isVerified) {
+                findViewById<ImageView>(R.id.verified_icon).visibility = VISIBLE
+            } else findViewById<ImageView>(R.id.verified_icon).visibility = GONE
+
+            if (chatItemData.isMute) {
+                findViewById<ImageView>(R.id.mute_icon).visibility = VISIBLE
+            } else findViewById<ImageView>(R.id.mute_icon).visibility = GONE
+
+            if (chatItemData.isScam) {
+                findViewById<ImageView>(R.id.scam_icon).visibility = VISIBLE
+            } else findViewById<ImageView>(R.id.scam_icon).visibility = GONE
+
+            if (chatItemData.isCheck) {
+                findViewById<ImageView>(R.id.check_icon).visibility = VISIBLE
+            } else findViewById<ImageView>(R.id.check_icon).visibility = GONE
+
+            if (chatItemData.isRead) {
+                findViewById<ImageView>(R.id.read_icon).visibility = VISIBLE
+            } else findViewById<ImageView>(R.id.read_icon).visibility = GONE
         }
     }
 }

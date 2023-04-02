@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 actionState: Int,
                 isCurrentlyActive: Boolean
             ) {
-                val viewTarget = (viewHolder as ChatViewHolder).returnView()
+                val viewTarget = (viewHolder as ChatViewHolder).returnUpperView()
                 getDefaultUIUtil().onDraw(
                     c, recyclerView, viewTarget, dX, dY,
                     actionState, isCurrentlyActive
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
             ) {
-                val viewTarget = (viewHolder as ChatViewHolder).returnView()
+                val viewTarget = (viewHolder as ChatViewHolder).returnUpperView()
                 getDefaultUIUtil().clearView(viewTarget)
             }
         })
