@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             override fun loadMoreItems() {
                 isLoading = true
                 getMoreItems()
-                Toast.makeText(this@MainActivity, "loadMoreItems", Toast.LENGTH_LONG).show()
             }
         })
 
