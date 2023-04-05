@@ -1,3 +1,51 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+
+    <string-array name="names">
+        <item>Барака</item>
+        <item>Горо</item>
+        <item>Джакс</item>
+        <item>Джонни Кейдж</item>
+        <item>Кабал</item>
+        <item>Китана</item>
+        <item>Милена</item>
+        <item>Нуб Сейбот</item>
+        <item>Рейден</item>
+        <item>Сайракс</item>
+        <item>Скорпион</item>
+        <item>Сектор</item>
+        <item>Шанг-Цунг</item>
+        <item>Шао-Кан</item>
+        <item>Синдел</item>
+        <item>Соня</item>
+        <item>Саб-Зиро</item>
+    </string-array>
+    <string-array name="messages">
+        <item>Привет! Есть пятихатка до зп?</item>
+        <item>Как дела?</item>
+        <item>С этим надо разобраться.</item>
+        <item>С домашкой по recycler view лучше не затягивать</item>
+        <item>Блин, завтра на работу((</item>
+        <item>Есть номер Лю-Канга?</item>
+        <item>Н-да! Мы себя в детстве так не вели</item>
+        <item>Винда опять слетела!</item>
+        <item>Сможешь завтра вместо меня на смену выйти?</item>
+        <item>Сообразим на троих?</item>
+        <item>Помоги с функциями высшего порядка</item>
+        <item>Домашка по фрагментам просто выбила из колеи!</item>
+        <item>Привет!</item>
+        <item>Посмотрим</item>
+        <item>А кто завтра дежурит?</item>
+        <item>Как только, так сразу.</item>
+        <item>Это мы не проходили</item>
+        <item>Да, жесть!</item>
+        <item>Я на больняк.</item>
+        <item>Что-то с этим котлином вся джава из головы вылетела</item>
+        <item>Когда деньги вернешь?</item>
+        <item>Можешь сварочный аппарат одолжить на пару дней?</item>
+        <item>И так сойдет</item>
+    </string-array>
+
+
 </resources>
+
