@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import otus.gpb.recyclerview.databinding.ActivityMainBinding
 
-var total = 0
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val chatAdapter = ChatAdapter()
     private val chatSet = mutableSetOf<Int>()
     private val list = mutableListOf<Int>()
+    private var total = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             adapter = chatAdapter
             (adapter as ChatAdapter).singleLoadingClickListener {
                 loadSingleItem(adapter as ChatAdapter)
-                Toast.makeText(this@MainActivity, "Single item loading", Toast.LENGTH_SHORT).show()
+
             }
             addItemDecoration(DividerDecorator(this@MainActivity))
             addOnScrollListener(ScrollListener(layoutManager).apply {
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadSingleItem(adapter: ChatAdapter){
         if(total < list.size){
+            Toast.makeText(this@MainActivity, "Single item loading", Toast.LENGTH_SHORT).show()
             val chatData = ChatData(this, list[total])
             adapter.addChat(chatData.createChat())
             total++
