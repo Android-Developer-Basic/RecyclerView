@@ -15,9 +15,10 @@ class DividerDecorator(context: Context): ItemDecoration() {
         color = ContextCompat.getColor(context,R.color.divider_color)
         strokeWidth = 2F
     }
+    private val screenPixelDensity = context.resources.displayMetrics.density
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        val  left = 73
+        val  left = 67*screenPixelDensity
         val right = parent.width
 
         for(i in 0 until parent.childCount){

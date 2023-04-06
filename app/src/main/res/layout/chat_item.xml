@@ -26,18 +26,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:layout_marginStart="12dp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/avatarContainer"
         app:layout_constraintTop_toTopOf="parent"
         />
     
-    <LinearLayout
-        android:id="@+id/iconLayout"
+    <ImageView
+        android:id="@+id/icon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/nik"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nik"
+        app:layout_constraintBottom_toBottomOf="@id/nik"
+
+        />
+    <ImageView
+        android:id="@+id/icon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/icon1"
+        app:layout_constraintTop_toTopOf="@id/nik"
+        app:layout_constraintBottom_toBottomOf="@id/nik"
+
+
         />
     <LinearLayout
         android:id="@+id/messageContainer"

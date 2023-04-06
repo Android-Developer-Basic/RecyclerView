@@ -2,66 +2,61 @@ package otus.gpb.recyclerview
 
 import android.content.Context
 import android.view.View
-import android.widget.ImageView
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import otus.gpb.recyclerview.databinding.ChatItemBinding
 
 class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHolder(item) {
     private val binding = ChatItemBinding.bind(item)
     fun bind(chat: Chat) = with(binding){
-        clearIcons()
+        clearViews()
         if (chat.userAvatar != null) avatarContainer.setImageResource(chat.userAvatar)
         nik.text = chat.userName
         message.text = chat.message
         time.text = chat.time
-        chat.markers.forEachIndexed { index, b ->
-            if(b) createIcons(index)
+        chat.flags.forEach { flag ->
+            when(flag){
+                "VERIFY_ACCOUNT" -> {
+
+                    binding.icon1.setImageResource(R.drawable.verify_account)
+                }
+
+                "MUTE" -> {
+                    binding.icon2.setImageResource(R.drawable.mute)
+                }
+
+                "DELIVERED" -> {
+                    binding.deliveryIcon.setImageResource(R.drawable.delivered)
+                }
+
+                "VIEWED" -> {
+                    binding.deliveryIcon.setImageResource(R.drawable.viewed)
+                }
+
+                "NOT_OPENED" ->{
+                    binding.notOpenedMessageIcon.background =
+                        ContextCompat.getDrawable(context, R.drawable.not_opened_message)
+                    binding.notOpenedMessageCounter.text = "${((Math.random()*5)+1).toInt()}"
+                }
+
+                "SCAM" ->{
+                    binding.icon1.setImageResource(R.drawable.scam)
+                }
+
+                else -> return
+            }
+
         }
 
-
-
-
     }
-    private fun clearIcons(){
-        binding.iconLayout.removeAllViews()
 
-    }
-    private fun createIcons(marker: Int){
-        when(marker){
-            0 -> {
-                val verifyIV = ImageView(context)
-                verifyIV.setImageResource(R.drawable.verify_account)
-                binding.iconLayout.addView(verifyIV)
-            }
-
-            1 -> {
-                val muteIV = ImageView(context)
-                muteIV.setImageResource(R.drawable.mute)
-                binding.iconLayout.addView(muteIV)
-            }
-
-            2 -> {
-                binding.deliveryIcon.setImageResource(R.drawable.delivered)
-            }
-
-            3 -> {
-                binding.deliveryIcon.setImageResource(R.drawable.viewed)
-            }
-
-            4 ->{
-                binding.notOpenedMessageIcon.background =
-                    AppCompatResources.getDrawable(context, R.drawable.not_opened_message)
-                binding.notOpenedMessageCounter.text = "${(Math.random()*5).toInt()}"
-            }
-
-            5 ->{
-                val scamIV = ImageView(context)
-                scamIV.setImageResource(R.drawable.scam)
-                binding.iconLayout.addView(scamIV)
-            }
-
-            else -> return
+    private fun clearViews(){
+        with(binding) {
+            icon1.setImageResource(0)
+            icon2.setImageResource(0)
+            deliveryIcon.setImageResource(0)
+            notOpenedMessageIcon.background = null
+            notOpenedMessageCounter.text = ""
         }
     }
 

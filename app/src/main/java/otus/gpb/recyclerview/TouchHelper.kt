@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class TouchHelper(private val adapter: ChatAdapter, private val context: Context): ItemTouchHelper.Callback() {
-    private val p = Paint()
+    private val paint = Paint().apply {
+        color = ContextCompat.getColor(context,R.color.archive_color)
+    }
+    private val icon: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.archive)
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
@@ -30,6 +33,7 @@ class TouchHelper(private val adapter: ChatAdapter, private val context: Context
     }
 
 
+
     override fun onChildDraw(
         c: Canvas,
         recyclerView: RecyclerView,
@@ -39,23 +43,19 @@ class TouchHelper(private val adapter: ChatAdapter, private val context: Context
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
-        val icon: Bitmap
+
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
 
             val itemView = viewHolder.itemView
             val height = itemView.bottom.toFloat() - itemView.top.toFloat()
             val width = height / 3
 
-            if (dX > 0) {
-               return
-
-            } else {
-                p.color = ContextCompat.getColor(context,R.color.archive_color)
+            if (dX <= 0) {
                 val background = RectF(itemView.right.toFloat() + dX, itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat())
-                c.drawRect(background, p)
-                icon = BitmapFactory.decodeResource(context.resources, R.drawable.archive)
+                c.drawRect(background, paint)
                 val iconDest = RectF(itemView.right.toFloat() - 2 * width, itemView.top.toFloat() + width, itemView.right.toFloat() - width, itemView.bottom.toFloat() - width)
-                c.drawBitmap(icon, null, iconDest, p)
+                c.drawBitmap(icon, null, iconDest, paint)
+
             }
         }
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)

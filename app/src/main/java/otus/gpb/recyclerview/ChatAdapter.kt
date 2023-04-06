@@ -1,20 +1,15 @@
 package otus.gpb.recyclerview
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.drawable.Drawable
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import otus.gpb.recyclerview.databinding.ChatItemBinding
+
 class ChatAdapter:RecyclerView.Adapter<ChatHolder>() {
 
-    private val chatArray = ArrayList<Chat>()
+    private val chatArray = mutableListOf<Chat>()
+    private var singleLoading:(()->Unit)? = null
 
 
 
@@ -27,19 +22,29 @@ class ChatAdapter:RecyclerView.Adapter<ChatHolder>() {
         return chatArray.size
     }
 
+
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
         holder.bind(chatArray[position])
     }
 
 
-    fun addChat(chat:Chat){
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addChat(chat: Chat){
         chatArray.add(chat)
+        notifyDataSetChanged()
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun removeItem(itemNumb:Int){
         chatArray.removeAt(itemNumb)
         notifyDataSetChanged()
+        singleLoading?.invoke()
+    }
+
+    fun singleLoadingClickListener(callback:()->Unit){
+        singleLoading = callback
     }
 
 

@@ -6,6 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class ChatData(context: Context, private val num:Int): AppCompatActivity( ) {
+    private val stateFlags = listOf(
+        "VERIFY_ACCOUNT",
+        "MUTE",
+        "DELIVERED",
+        "VIEWED",
+        "NOT_OPENED",
+        "SCAM"
+    )
     private val images: Array<Int> = arrayOf(
         R.drawable.baraka,
         R.drawable.goro,
@@ -40,14 +48,22 @@ class ChatData(context: Context, private val num:Int): AppCompatActivity( ) {
         val isDelivered = randomNum == 5 || randomNum == 7
         val isViewed = randomNum <= 4
         val isScam = num==1
-        val markers = mutableListOf(isVerify,isMute,isDelivered,isViewed,!isDelivered && !isViewed && randomNum %2 == 0,isScam)
+        val isNotOpened = !isDelivered && !isViewed && randomNum %2 == 0
+        val markers = mutableListOf(isVerify, isMute, isDelivered, isViewed, isNotOpened, isScam)
+        val flags = mutableListOf<String>()
+        markers.forEachIndexed {index, item ->
+            if(item) flags.add(stateFlags[index])
+        }
+        val hour = (Math.random()*24).toInt()
+        val minutes = (Math.random()*60).toInt()
+        val time = String.format("%02d:%02d", hour, minutes)
 
         return Chat(
             images[num],
             name,
             messages[randomNum],
-            "${!isDelivered && !isViewed && randomNum %2 == 0}",
-            markers
+            time,
+            flags
         )
     }
 

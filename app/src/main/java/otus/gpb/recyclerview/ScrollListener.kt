@@ -7,17 +7,20 @@ class ScrollListener(private val layoutManager: LinearLayoutManager) : RecyclerV
 
     private var load:(()->Unit)? = null
 
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        super.onScrolled(recyclerView, dx, dy)
 
+
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         val firstPos = layoutManager.findFirstVisibleItemPosition()
         val totalItems = layoutManager.itemCount
         val allVisibleItems = layoutManager.childCount
 
-        if(firstPos + allVisibleItems >= totalItems) load?.invoke()
+        if(firstPos + allVisibleItems == totalItems) load?.invoke()
+        super.onScrollStateChanged(recyclerView, newState)
     }
 
     fun loadListener(callback:()->Unit){
         load = callback
     }
+
+
 }
