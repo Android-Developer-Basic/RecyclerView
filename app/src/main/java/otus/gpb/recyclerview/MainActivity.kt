@@ -1,6 +1,5 @@
 package otus.gpb.recyclerview
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     private fun loadItemsToRV(adapter: ChatAdapter){
         var count = total
         val size = list.size - total

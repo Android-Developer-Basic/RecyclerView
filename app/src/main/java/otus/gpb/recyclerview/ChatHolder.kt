@@ -14,15 +14,18 @@ class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHo
         nik.text = chat.userName
         message.text = chat.message
         time.text = chat.time
+        var isFirstIconEmpty = true
         chat.flags.forEach { flag ->
             when(flag){
                 "VERIFY_ACCOUNT" -> {
 
                     binding.icon1.setImageResource(R.drawable.verify_account)
+                    isFirstIconEmpty = false
                 }
 
                 "MUTE" -> {
-                    binding.icon2.setImageResource(R.drawable.mute)
+                    if(!isFirstIconEmpty) binding.icon2.setImageResource(R.drawable.mute)
+                    else binding.icon1.setImageResource(R.drawable.mute)
                 }
 
                 "DELIVERED" -> {
@@ -41,6 +44,7 @@ class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHo
 
                 "SCAM" ->{
                     binding.icon1.setImageResource(R.drawable.scam)
+                    isFirstIconEmpty = false
                 }
 
                 else -> return
