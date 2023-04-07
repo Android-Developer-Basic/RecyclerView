@@ -57,13 +57,15 @@ class ChatData(context: Context, private val num:Int): AppCompatActivity( ) {
         val hour = (Math.random()*24).toInt()
         val minutes = (Math.random()*60).toInt()
         val time = String.format("%02d:%02d", hour, minutes)
+        val numberOfMessages = if(isNotOpened) ((Math.random()*5)+1).toInt() else null
 
         return Chat(
             images[num],
             name,
             messages[randomNum],
             time,
-            flags
+            flags,
+            numberOfMessages
         )
     }
 

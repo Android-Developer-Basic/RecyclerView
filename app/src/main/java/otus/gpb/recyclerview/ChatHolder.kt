@@ -39,7 +39,9 @@ class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHo
                 "NOT_OPENED" ->{
                     binding.notOpenedMessageIcon.background =
                         ContextCompat.getDrawable(context, R.drawable.not_opened_message)
-                    binding.notOpenedMessageCounter.text = "${((Math.random()*5)+1).toInt()}"
+                    chat.numberOfMessages?.let {
+                        binding.notOpenedMessageCounter.text = "$it"
+                    }
                 }
 
                 "SCAM" ->{
