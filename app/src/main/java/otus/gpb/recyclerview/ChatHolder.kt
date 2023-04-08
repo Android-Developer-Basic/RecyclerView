@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import otus.gpb.recyclerview.databinding.ChatItemBinding
 
-class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHolder(item) {
+class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHolder(item){
     private val binding = ChatItemBinding.bind(item)
     fun bind(chat: Chat) = with(binding){
         clearViews()
@@ -17,26 +17,26 @@ class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHo
         var isFirstIconEmpty = true
         chat.flags.forEach { flag ->
             when(flag){
-                "VERIFY_ACCOUNT" -> {
+                ChatFlags.VERIFY_ACCOUNT-> {
 
                     binding.icon1.setImageResource(R.drawable.verify_account)
                     isFirstIconEmpty = false
                 }
 
-                "MUTE" -> {
+                ChatFlags.MUTE -> {
                     if(!isFirstIconEmpty) binding.icon2.setImageResource(R.drawable.mute)
                     else binding.icon1.setImageResource(R.drawable.mute)
                 }
 
-                "DELIVERED" -> {
+                ChatFlags.DELIVERED -> {
                     binding.deliveryIcon.setImageResource(R.drawable.delivered)
                 }
 
-                "VIEWED" -> {
+                ChatFlags.VIEWED -> {
                     binding.deliveryIcon.setImageResource(R.drawable.viewed)
                 }
 
-                "NOT_OPENED" ->{
+                ChatFlags.NOT_OPENED ->{
                     binding.notOpenedMessageIcon.background =
                         ContextCompat.getDrawable(context, R.drawable.not_opened_message)
                     chat.numberOfMessages?.let {
@@ -44,12 +44,11 @@ class ChatHolder (item: View, private val context: Context): RecyclerView.ViewHo
                     }
                 }
 
-                "SCAM" ->{
+                ChatFlags.SCAM ->{
                     binding.icon1.setImageResource(R.drawable.scam)
                     isFirstIconEmpty = false
                 }
 
-                else -> return
             }
 
         }

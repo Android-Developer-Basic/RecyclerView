@@ -7,6 +7,6 @@ class Chat(
     val userName: String,
     val message: String,
     val time:String,
-    val flags:List<String>,
+    val flags:Set<ChatFlags>,
     val numberOfMessages:Int? = null
 )

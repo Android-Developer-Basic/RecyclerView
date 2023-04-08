@@ -32,8 +32,6 @@ class TouchHelper(private val adapter: ChatAdapter, private val context: Context
         adapter.notifyItemRemoved(pos)
     }
 
-
-
     override fun onChildDraw(
         c: Canvas,
         recyclerView: RecyclerView,

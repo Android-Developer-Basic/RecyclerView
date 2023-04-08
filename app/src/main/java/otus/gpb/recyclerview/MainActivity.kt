@@ -20,19 +20,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val layoutManager = LinearLayoutManager(this)
-        val chatData = ChatData(this, 0)
+        val names = this.resources.getStringArray(R.array.names)
+        val messages = this.resources.getStringArray(R.array.messages)
         binding.recyclerView.apply {
             this.layoutManager = layoutManager
             adapter = chatAdapter
             (adapter as ChatAdapter).singleLoadingClickListener {
-                loadSingleItem(adapter as ChatAdapter)
+                loadSingleItem(adapter as ChatAdapter, names, messages)
 
             }
             addItemDecoration(DividerDecorator(this@MainActivity))
             addOnScrollListener(ScrollListener(layoutManager).apply {
                 loadListener {
-                    if(total < chatData.getSize()) {
-                        loadItemsToRV(adapter as ChatAdapter)
+                    if(total < names.size) {
+                        loadItemsToRV(adapter as ChatAdapter, names, messages)
                         Toast.makeText(this@MainActivity, "Loading", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -42,27 +43,25 @@ class MainActivity : AppCompatActivity() {
 
         val touchHelper = ItemTouchHelper(TouchHelper(binding.recyclerView.adapter as ChatAdapter, this))
         touchHelper.attachToRecyclerView(binding.recyclerView)
-        fillChatSet(chatData)
-        loadItemsToRV(binding.recyclerView.adapter as ChatAdapter)
+        fillChatSet(names.size)
+        loadItemsToRV(binding.recyclerView.adapter as ChatAdapter, names, messages)
 
     }
 
-    private fun fillChatSet(chatData:ChatData){
-        val size = chatData.getSize()
+    private fun fillChatSet(size: Int){
         while (chatSet.size < size) {
             chatSet.add((Math.random()*size).toInt())
         }
         chatSet.map { list.add(it) }
-
     }
 
 
-    private fun loadItemsToRV(adapter: ChatAdapter){
+    private fun loadItemsToRV(adapter: ChatAdapter,names: Array<String>, messages: Array<String>){
         var count = total
         val size = list.size - total
         val limit = if(size - total < 0) size else 10
         while (count < total+limit){
-            val chatData = ChatData(this, list[count])
+            val chatData = ChatData(names, messages,list[count])
             adapter.addChat(chatData.createChat())
             count++
         }
@@ -70,10 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadSingleItem(adapter: ChatAdapter){
+    private fun loadSingleItem(adapter: ChatAdapter, names: Array<String>, messages: Array<String>){
         if(total < list.size){
             Toast.makeText(this@MainActivity, "Single item loading", Toast.LENGTH_SHORT).show()
-            val chatData = ChatData(this, list[total])
+            val chatData = ChatData(names, messages, list[total])
             adapter.addChat(chatData.createChat())
             total++
         }

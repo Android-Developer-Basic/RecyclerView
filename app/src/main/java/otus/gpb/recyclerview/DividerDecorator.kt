@@ -25,7 +25,7 @@ class DividerDecorator(context: Context): ItemDecoration() {
             val child = parent.getChildAt(i)
             parent.getDecoratedBoundsWithMargins(child, bounds)
 
-            c.drawLine(left.toFloat(), bounds.bottom.toFloat(), right.toFloat(), bounds.bottom.toFloat(), paint)
+            c.drawLine(left, bounds.bottom.toFloat(), right.toFloat(), bounds.bottom.toFloat(), paint)
         }
 
         super.onDraw(c, parent, state)
