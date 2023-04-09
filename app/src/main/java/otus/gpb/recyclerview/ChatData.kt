@@ -1,6 +1,6 @@
 package otus.gpb.recyclerview
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+
 
 
 enum class ChatFlags{
@@ -14,7 +14,9 @@ enum class ChatFlags{
 
 class ChatData(private val names:Array<String>, private val messages:Array<String>, private val num:Int=0){
 
-    companion object:AppCompatActivity(){
+    companion object{
+
+        @SuppressLint("StaticFieldLeak")
 
         private val images: Array<Int> = arrayOf(
             R.drawable.baraka,
