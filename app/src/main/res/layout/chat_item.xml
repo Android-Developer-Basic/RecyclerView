@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="10dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatar"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginStart="10dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        tools:src="@drawable/pizza"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:textColor="#222222"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textSize="16sp"
+        tools:text="Pizza"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/scam"
+        android:layout_width="44dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="6dp"
+        android:src="@drawable/scam"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        app:layout_constraintStart_toEndOf="@id/title"
+        />
+    
+    <ImageView
+        android:id="@+id/verified"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/verified_icon"
+        app:layout_constraintStart_toEndOf="@id/scam"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        />
+
+    <ImageView
+        android:id="@+id/mute"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/mute_icon"
+        app:layout_constraintStart_toEndOf="@id/verified"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="13dp"
+        tools:text="11:38 AM"
+        android:textColor="#95999A"
+        android:textSize="13sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/status"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="1dp"
+        tools:src="@drawable/read_icon"
+        app:layout_constraintEnd_toStartOf="@id/time"
+        app:layout_constraintTop_toTopOf="@id/time"
+        app:layout_constraintBottom_toBottomOf="@id/time"
+        />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="jija"
+        android:textColor="#434449"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        />
+
+    <ImageView
+        android:id="@+id/preview"
+        android:layout_width="24dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="4dp"
+        android:paddingEnd="6dp"
+        tools:src="@drawable/preview"
+        app:layout_constraintTop_toTopOf="@id/text"
+        app:layout_constraintBottom_toBottomOf="@id/text"
+        app:layout_constraintStart_toStartOf="@id/subtitle"
+        app:layout_constraintEnd_toStartOf="@id/text"
+        />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="13dp"
+        tools:text="Yes, they are necessary"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintStart_toEndOf="@id/preview"
+        app:layout_constraintEnd_toStartOf="@id/unread"
+        />
+
+    <TextView
+        android:id="@+id/unread"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/unread_bagde_bg"
+        tools:text="1"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
