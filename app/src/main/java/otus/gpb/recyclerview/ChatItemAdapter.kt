@@ -218,11 +218,16 @@ class ChatItemDecoration : RecyclerView.ItemDecoration() {
 class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTouchHelper.Callback() {
 
     private val mPaint = Paint()
+    private val mClear = Paint()
 
     init {
         mPaint.color = Color.parseColor("#4B91CA")
-        mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.strokeWidth = 5f
+        mPaint.style = Paint.Style.FILL
+        mPaint.strokeWidth = 1f
+
+        mClear.color = Color.WHITE
+        mClear.style = Paint.Style.FILL
+        mClear.strokeWidth = 1f
     }
 
     override fun getMovementFlags(
@@ -269,9 +274,10 @@ class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTo
         val itemView = viewHolder.itemView
         val itemHeight = itemView.height
 
-        if ((itemView.right + dX > 0) && (dX < 0))
+        if ((itemView.right + dX > 0) && (dX < 0)) {
+
             c.drawRoundRect(
-                itemView.right + dX + 5,
+                itemView.right + dX - 20,
                 itemView.top.toFloat(),
                 itemView.right.toFloat(),
                 itemView.bottom.toFloat(),
@@ -279,6 +285,17 @@ class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTo
                 20f,
                 mPaint
             )
+
+            c.drawRoundRect(
+                itemView.right + dX - 20,
+                itemView.top.toFloat(),
+                itemView.right.toFloat() + dX,
+                itemView.bottom.toFloat(),
+                20f,
+                20f,
+                mClear
+            )
+        }
 
         ResourcesCompat.getDrawable(
             itemView.context.resources,
