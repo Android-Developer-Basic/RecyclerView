@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.util.*
+
 
 class ChatItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -100,7 +102,7 @@ class ChatItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
                 for (i in 0 until ld.numberOfLayers) {
                     val w = ld.getDrawable(i).intrinsicWidth + 10
                     ld.setLayerInset(i, s, 0, s + w, 0)
-                    ld.setLayerGravity(i, Gravity.LEFT or Gravity.CENTER_VERTICAL)
+                    ld.setLayerGravity(i, Gravity.START or Gravity.CENTER_VERTICAL)
                     s += w
                 }
                 ts.setImageDrawable(ld)
@@ -117,7 +119,7 @@ class ChatItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         }
 
         itemView.findViewById<TextView>(R.id.time).apply {
-            text = SimpleDateFormat("E HH:mm").format(Timestamp(chatItemData.time))
+            text = SimpleDateFormat("E HH:mm", Locale("RU")).format(Timestamp(chatItemData.time))
         }
 
         itemView.findViewById<ImageView>(R.id.time_status).apply {
@@ -195,20 +197,22 @@ class ChatItemDecoration : RecyclerView.ItemDecoration() {
         mPaints[0].strokeWidth = 5f
         mPaints[0].style = Paint.Style.STROKE
 
-        mPaints[1].color = Color.rgb(0, 100, 200)
+        mPaints[1].color = Color.rgb(200, 200, 0)
         mPaints[1].strokeWidth = 5f
         mPaints[1].style = Paint.Style.STROKE
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        super.onDraw(c, parent, state)
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        super.onDrawOver(c, parent, state)
 
         parent.children.forEach {
             (parent.adapter as ChatItemAdapter).getItem(parent.getChildAdapterPosition(it))?.let { d ->
-                c.drawRoundRect(it.left.toFloat(), it.top.toFloat(), it.right.toFloat(), it.bottom.toFloat(), 20f, 20f, mPaints[d.id % 2])
+                c.drawRoundRect(it.left + it.translationX, it.top.toFloat(), it.right + it.translationX, it.bottom.toFloat(), 20f, 20f, mPaints[d.id % 2])
             }
         }
+
     }
+
 }
 
 class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTouchHelper.Callback() {
@@ -217,6 +221,8 @@ class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTo
 
     init {
         mPaint.color = Color.parseColor("#4B91CA")
+        mPaint.style = Paint.Style.FILL_AND_STROKE
+        mPaint.strokeWidth = 5f
     }
 
     override fun getMovementFlags(
@@ -254,16 +260,25 @@ class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTo
     ) {
         //super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
-        val itemView = viewHolder.itemView;
-        val itemHeight = itemView.height
 
         if ((dX == 0f) && !isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, false)
             return
         }
 
-        c.drawRoundRect(itemView.right + dX, itemView.top.toFloat() + 3, itemView.right.toFloat() - 3, itemView.bottom.toFloat() - 3, 20f, 20f, mPaint)
+        val itemView = viewHolder.itemView
+        val itemHeight = itemView.height
 
+        if ((itemView.right + dX > 0) && (dX < 0))
+            c.drawRoundRect(
+                itemView.right + dX + 5,
+                itemView.top.toFloat(),
+                itemView.right.toFloat(),
+                itemView.bottom.toFloat(),
+                20f,
+                20f,
+                mPaint
+            )
 
         ResourcesCompat.getDrawable(
             itemView.context.resources,
@@ -300,7 +315,7 @@ class ChatScrollListener(private val layoutManager: LinearLayoutManager, private
                 var id = adapter.maxID() + 1
                 while (count > 0)
                 {
-                    adapter.setItem(ChatItemData(id, false), false)
+                    adapter.setItem(createChatItemData(id, false), false)
                     count--
                     id++
                 }

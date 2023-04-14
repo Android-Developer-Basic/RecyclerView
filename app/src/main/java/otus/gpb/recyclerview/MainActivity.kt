@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
             addOnScrollListener(ChatScrollListener(layoutManager as LinearLayoutManager, ad))
 
-            for (i in 0..19) ad.setItem(ChatItemData(i, false), false)
+            for (i in 0..19) ad.setItem(createChatItemData(i, false), false)
             ad.notifyItemRangeInserted(0, 19)
         }
 
