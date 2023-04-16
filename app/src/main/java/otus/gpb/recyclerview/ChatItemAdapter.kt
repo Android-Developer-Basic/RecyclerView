@@ -12,8 +12,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
@@ -21,18 +19,20 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import otus.gpb.recyclerview.databinding.ChatItemBinding
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class ChatItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun setData(chatItemData: ChatItemData) {
 
+        val view = ChatItemBinding.bind(itemView)
+
         val context = itemView.context
 
-        itemView.findViewById<ImageView>(R.id.avatar).setImageDrawable(
+        view.avatar.setImageDrawable(
             if (chatItemData.avatar.compareTo(0u) == 0)
                 null
             else {
@@ -48,68 +48,65 @@ class ChatItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             }
         )
 
-        itemView.findViewById<TextView>(R.id.author).apply {
+        with (view.author) {
             text = chatItemData.author
             isVisible = chatItemData.author.isNotEmpty()
         }
 
-        val ts = itemView.findViewById<ImageView>(R.id.title_status)
-        ts.setImageDrawable(null)
+        view.titleStatus.setImageDrawable(null)
 
-        itemView.findViewById<TextView>(R.id.title).apply {
-            text = chatItemData.title
+        val img = MutableList<Drawable?>(0) { null }
+        if (ChatItemStatus.SCAM.isSet(chatItemData.status)) img.add(
+            ResourcesCompat.getDrawable(
+                context.resources,
+                R.drawable.list_scam,
+                null
+            )
+        )
+        if (ChatItemStatus.FAKE.isSet(chatItemData.status)) img.add(
+            ResourcesCompat.getDrawable(
+                context.resources,
+                R.drawable.list_fake,
+                null
+            )
+        )
+        if (ChatItemStatus.VERIFY.isSet(chatItemData.status)) img.add(
+            ResourcesCompat.getDrawable(
+                context.resources,
+                R.drawable.list_verified_profile,
+                null
+            )
+        )
+        if (ChatItemStatus.MUTE.isSet(chatItemData.status)) img.add(
+            ResourcesCompat.getDrawable(
+                context.resources,
+                R.drawable.list_mute,
+                null
+            )
+        )
+        if (ChatItemStatus.SECRET.isSet(chatItemData.status)) img.add(
+            ResourcesCompat.getDrawable(
+                context.resources,
+                R.drawable.list_secret,
+                null
+            )
+        )
 
-            val img = MutableList<Drawable?>(0) { null }
-            if (ChatItemStatus.SCAM.isSet(chatItemData.status)) img.add(
-                ResourcesCompat.getDrawable(
-                    context.resources,
-                    R.drawable.list_scam,
-                    null
-                )
-            )
-            if (ChatItemStatus.FAKE.isSet(chatItemData.status)) img.add(
-                ResourcesCompat.getDrawable(
-                    context.resources,
-                    R.drawable.list_fake,
-                    null
-                )
-            )
-            if (ChatItemStatus.VERIFY.isSet(chatItemData.status)) img.add(
-                ResourcesCompat.getDrawable(
-                    context.resources,
-                    R.drawable.list_verified_profile,
-                    null
-                )
-            )
-            if (ChatItemStatus.MUTE.isSet(chatItemData.status)) img.add(
-                ResourcesCompat.getDrawable(
-                    context.resources,
-                    R.drawable.list_mute,
-                    null
-                )
-            )
-            if (ChatItemStatus.SECRET.isSet(chatItemData.status)) img.add(
-                ResourcesCompat.getDrawable(
-                    context.resources,
-                    R.drawable.list_secret,
-                    null
-                )
-            )
-
-            if (img.isNotEmpty()) {
-                var s = 0
-                val ld = LayerDrawable(img.toTypedArray())
-                for (i in 0 until ld.numberOfLayers) {
-                    val w = ld.getDrawable(i).intrinsicWidth + 10
-                    ld.setLayerInset(i, s, 0, s + w, 0)
-                    ld.setLayerGravity(i, Gravity.START or Gravity.CENTER_VERTICAL)
-                    s += w
-                }
-                ts.setImageDrawable(ld)
+        if (img.isNotEmpty()) {
+            var s = 0
+            val ld = LayerDrawable(img.toTypedArray())
+            for (i in 0 until ld.numberOfLayers) {
+                val w = ld.getDrawable(i).intrinsicWidth + 10
+                ld.setLayerInset(i, s, 0, s + w, 0)
+                ld.setLayerGravity(i, Gravity.START or Gravity.CENTER_VERTICAL)
+                s += w
             }
+            view.titleStatus.setImageDrawable(ld)
         }
 
-        itemView.findViewById<TextView>(R.id.message).apply {
+        view.title.text = chatItemData.title
+
+        with (view.message) {
             text = chatItemData.message
 
             with (layoutParams as ConstraintLayout.LayoutParams){
@@ -118,24 +115,17 @@ class ChatItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         }
 
-        itemView.findViewById<TextView>(R.id.time).apply {
-            text = SimpleDateFormat("E HH:mm", Locale("RU")).format(Timestamp(chatItemData.time))
-        }
+        view.time.text = SimpleDateFormat("E HH:mm", Locale("RU")).format(Timestamp(chatItemData.time))
 
-        itemView.findViewById<ImageView>(R.id.time_status).apply {
+        var drwId: Int? = null
+        if (ChatItemStatus.CHECK.isSet(chatItemData.status))
+            drwId = R.drawable.list_check
+        else
+            if (ChatItemStatus.READ.isSet(chatItemData.status)) drwId = R.drawable.list_read
+        view.timeStatus.setImageDrawable(if (drwId != null) ResourcesCompat.getDrawable(context.resources, drwId, null) else null)
 
-            var drwId: Int? = null
-            if (ChatItemStatus.CHECK.isSet(chatItemData.status))
-                drwId = R.drawable.list_check
-            else
-                if (ChatItemStatus.READ.isSet(chatItemData.status)) drwId = R.drawable.list_read
-
-            setImageDrawable(if (drwId != null) ResourcesCompat.getDrawable(context.resources, drwId, null) else null)
-
-        }
-
-        itemView.findViewById<ImageView>(R.id.attach).isVisible = ChatItemStatus.ATTACH.isSet(chatItemData.status)
-        itemView.findViewById<ImageView>(R.id.email).isVisible = ChatItemStatus.EMAIL.isSet(chatItemData.status)
+        view.attach.isVisible = ChatItemStatus.ATTACH.isSet(chatItemData.status)
+        view.email.isVisible = ChatItemStatus.EMAIL.isSet(chatItemData.status)
 
     }
 
@@ -205,9 +195,10 @@ class ChatItemDecoration : RecyclerView.ItemDecoration() {
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
 
-        parent.children.forEach {
-            (parent.adapter as ChatItemAdapter).getItem(parent.getChildAdapterPosition(it))?.let { d ->
-                c.drawRoundRect(it.left + it.translationX, it.top.toFloat(), it.right + it.translationX, it.bottom.toFloat(), 20f, 20f, mPaints[d.id % 2])
+        parent.children.forEach { child ->
+            (parent.adapter as ChatItemAdapter).getItem(parent.getChildAdapterPosition(child))?.let { d ->
+                val layerMain = ChatItemBinding.bind(child).layerMain
+                c.drawRoundRect(child.left + layerMain.translationX + 5.toPx, child.top + layerMain.translationY + 5.toPx, child.right + layerMain.translationX - 5.toPx, child.bottom + layerMain.translationY - 5.toPx, 20f, 20f, mPaints[d.id % 2])
             }
         }
 
@@ -216,19 +207,6 @@ class ChatItemDecoration : RecyclerView.ItemDecoration() {
 }
 
 class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTouchHelper.Callback() {
-
-    private val mPaint = Paint()
-    private val mClear = Paint()
-
-    init {
-        mPaint.color = Color.parseColor("#4B91CA")
-        mPaint.style = Paint.Style.FILL
-        mPaint.strokeWidth = 1f
-
-        mClear.color = Color.WHITE
-        mClear.style = Paint.Style.FILL
-        mClear.strokeWidth = 1f
-    }
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
@@ -263,59 +241,23 @@ class ChatItemTouchHelperCallback(private val adapter: ChatItemAdapter) : ItemTo
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
+
         //super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
+        val view = ChatItemBinding.bind(viewHolder.itemView)
 
-        if ((dX == 0f) && !isCurrentlyActive) {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, false)
-            return
+        if ((dX != 0f) || isCurrentlyActive) getDefaultUIUtil().onDraw(c, recyclerView, view.layer2Archive, 0f, 0f, actionState, isCurrentlyActive)
+
+        getDefaultUIUtil().onDraw(c, recyclerView, view.layerMain, dX, dY, actionState, isCurrentlyActive)
+    }
+
+    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+        with(getDefaultUIUtil())
+        {
+            val view = ChatItemBinding.bind(viewHolder.itemView)
+            clearView(view.layer2Archive)
+            clearView(view.layerMain)
         }
-
-        val itemView = viewHolder.itemView
-        val itemHeight = itemView.height
-
-        if ((itemView.right + dX > 0) && (dX < 0)) {
-
-            c.drawRoundRect(
-                itemView.right + dX - 20,
-                itemView.top.toFloat(),
-                itemView.right.toFloat(),
-                itemView.bottom.toFloat(),
-                20f,
-                20f,
-                mPaint
-            )
-
-            c.drawRoundRect(
-                itemView.right + dX - 20,
-                itemView.top.toFloat(),
-                itemView.right.toFloat() + dX,
-                itemView.bottom.toFloat(),
-                20f,
-                20f,
-                mClear
-            )
-        }
-
-        ResourcesCompat.getDrawable(
-            itemView.context.resources,
-            R.drawable.chats_archive,
-            null
-        )?.apply {
-            val archiveIconMargin: Int = (itemHeight - intrinsicHeight) / 2
-            val archiveIconTop: Int = itemView.top + (itemHeight - intrinsicHeight) / 2
-
-            setBounds(
-                itemView.right - archiveIconMargin - intrinsicWidth,
-                archiveIconTop,
-                itemView.right - archiveIconMargin,
-                archiveIconTop + intrinsicHeight
-            )
-
-            draw(c)
-        }
-
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 
 }
@@ -342,3 +284,4 @@ class ChatScrollListener(private val layoutManager: LinearLayoutManager, private
 }
 
 val Int.toDp get() = (this / Resources.getSystem().displayMetrics.density).toInt()
+val Int.toPx get() = (this * Resources.getSystem().displayMetrics.density).toInt()

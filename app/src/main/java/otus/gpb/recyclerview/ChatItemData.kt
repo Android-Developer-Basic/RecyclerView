@@ -18,13 +18,13 @@ enum class ChatItemStatus(private val value: Int) {
     fun doSet(statusValue: Int, set: Boolean = false) = if (set) statusValue or value else statusValue and (value xor -1)
 }
 
-data class ChatItemData(val id: Int, val author: String, val title: String = "", val message: String = "", val avatar: UByte = 0u, val status: Int = 0) {
+data class ChatItemData(val id: Int, val author: String = "anonymous", val title: String = "", val message: String = "", val avatar: UByte = 0u, val status: Int = 0) {
     val time = System.currentTimeMillis()
 }
 
 fun createChatItemData(id: Int, empty: Boolean = false): ChatItemData {
 
-    return if (empty) ChatItemData(id, "anonymous")
+    return if (empty) ChatItemData(id)
         else {
 
         val avatar = Random.nextInt(0, 8)
