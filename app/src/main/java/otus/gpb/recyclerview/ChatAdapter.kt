@@ -12,7 +12,6 @@ class ChatAdapter : RecyclerView.Adapter<ItemViewHolder>(){
         return ItemViewHolder(itemView)
 
     }
-
     override fun getItemCount(): Int {
         return chatList.size
     }
@@ -21,18 +20,17 @@ class ChatAdapter : RecyclerView.Adapter<ItemViewHolder>(){
         val chat = chatList[position]
         holder.bind(chat)
     }
-
-//    override fun getItemViewType(position: Int): Int {
-//        val isItemColored = list[position].isColored
-//        return if (isItemColored) VIEW_TYPE_COLORED_ITEM else VIEW_TYPE_REGULAR_ITEM
-//    }
-
     fun submitData(data: MutableList<ItemData>) {
         chatList.clear()
         chatList.addAll(data)
     }
-
     fun removeItem(adapterPosition: Int) {
         chatList.removeAt(adapterPosition)
+    }
+
+    fun addData(newDataList: MutableList<ItemData>) {
+        val oldSize = chatList.size
+        chatList.addAll(newDataList)
+        notifyItemRangeInserted(oldSize, newDataList.size)
     }
 }

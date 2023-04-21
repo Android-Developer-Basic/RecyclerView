@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 open class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
+    fun getChatList(): View {
+        return itemView.findViewById(R.id.chat_list)
+    }
     fun bind(itemData: ItemData) {
 
         itemView.findViewById<ImageView>(R.id.avatar).setImageResource(itemData.avatar)
