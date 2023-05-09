@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">RecyclerView</string>
+    <string name="app_name">Homework#6: RecyclerView</string>
+    <string name="new_messages_count">New messages count</string>
 </resources>
