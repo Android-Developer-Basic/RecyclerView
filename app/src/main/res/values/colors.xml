@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="tufts_blue">#3D95D4</color>
+    <color name="wageningen_green">#48A938</color>
+    <color name="celestial_blue">#4B91CA</color>
+    <color name="silver_sand">#BDC1C4</color>
+    <color name="outer_space">#434449</color>
+    <color name="davys_grey">#5C5D61</color>
+    <color name="light_silver">#D9D9D9</color>
+    <color name="little_boy_blue">#66A9E0</color>
 </resources>
