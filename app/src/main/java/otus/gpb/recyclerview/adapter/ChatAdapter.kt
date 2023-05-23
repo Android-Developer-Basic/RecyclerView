@@ -26,7 +26,6 @@ class ChatAdapter(
         val item = _list[position]
         holder.itemView.setOnClickListener {
             listener.onBindingClick(item, position)
-//            item.onClickListener?.invoke(item)
         }
         holder.bind(item)
     }

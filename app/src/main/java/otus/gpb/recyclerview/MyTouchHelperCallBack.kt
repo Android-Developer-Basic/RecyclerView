@@ -17,8 +17,8 @@ abstract class MyTouchHelperCallBack(
 ) : ItemTouchHelper.Callback() {
 
     private val icon = AppCompatResources.getDrawable(context, R.drawable.ic_archive_32)
-    private val iconIntrinsicWidth = icon?.let {icon.intrinsicWidth}!!
-    private val iconIntrinsicHeight = icon?.let {icon.intrinsicHeight}!!
+    private val iconIntrinsicWidth = icon?.let { icon.intrinsicWidth }!!
+    private val iconIntrinsicHeight = icon?.let { icon.intrinsicHeight }!!
     private val iconLeftMargin = 42
 
     private val background = ColorDrawable()
@@ -26,7 +26,6 @@ abstract class MyTouchHelperCallBack(
 
     private val clearPaint = Paint()
     private val paint = Paint()
-
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
@@ -50,19 +49,14 @@ abstract class MyTouchHelperCallBack(
         isCurrentlyActive: Boolean
     ) {
 
-        if (viewHolder.adapterPosition == RecyclerView.NO_POSITION)
+        if (viewHolder.adapterPosition == RecyclerView.NO_POSITION) {
             return
-
-
-//TODO вопросы вопросы отус ресайкл.txt
-//        3. через ДиффУтил
-
+        }
 
         val itemView = viewHolder.itemView
         val itemViewHeight = itemView.height
 
         val isCanceled: Boolean = (dX == 0F) && !isCurrentlyActive
-
         if (isCanceled) {
             clearCanvas(
                 c,
@@ -80,7 +74,8 @@ abstract class MyTouchHelperCallBack(
             dX.toInt() + itemView.right,
             itemView.top - MyDecoration.TOP_OFFSET.dp2px(context),
             itemView.right,
-            itemView.bottom + MyDecoration.BOTTOM_OFFSET.dp2px(context))
+            itemView.bottom + MyDecoration.BOTTOM_OFFSET.dp2px(context)
+        )
         background.draw(c)
 
         val iconLeft = itemView.right - iconIntrinsicWidth - iconLeftMargin
@@ -104,7 +99,7 @@ abstract class MyTouchHelperCallBack(
         )
 
         val textLeft = itemView.right - iconIntrinsicWidth
-        val textTop = iconTop + iconIntrinsicHeight + verticalMargin /2
+        val textTop = iconTop + iconIntrinsicHeight + verticalMargin / 2
 
         paint.color = Color.WHITE
         paint.textSize = TEXT_SIZE.sp(context)
@@ -117,8 +112,6 @@ abstract class MyTouchHelperCallBack(
 
 
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
-//        Returns the fraction that the user should move the View to be considered as swiped.
-//        return super.getSwipeThreshold(viewHolder)
         return 0.7F
     }
 
@@ -132,8 +125,9 @@ abstract class MyTouchHelperCallBack(
         this,
         context.resources.displayMetrics
     )
+
     private fun Int.dp2px(context: Context): Int =
-        (this *context.resources.displayMetrics.density).toInt()
+        (this * context.resources.displayMetrics.density).toInt()
 
     companion object {
         private const val LABEL_TEXT = "Archive"

@@ -26,7 +26,7 @@ class MyPageScrollListener(
     }
 
     companion object{
-        private const val ITEM_COUNT_OFFSET = 10
+        private const val ITEM_COUNT_OFFSET = 5
     }
 
 }
