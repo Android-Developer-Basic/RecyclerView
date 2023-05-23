@@ -1,28 +1,31 @@
 package otus.gpb.recyclerview
 
-import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.recyclerview.widget.DividerItemDecoration
+import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
+import otus.gpb.recyclerview.adapter.ChatAdapter
+import otus.gpb.recyclerview.adapter.OnInteractionListener
 import otus.gpb.recyclerview.databinding.ActivityMainBinding
-import otus.gpb.recyclerview.databinding.ChatItemLayoutBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
     private val chatAdapter: ChatAdapter by lazy {
         ChatAdapter(object : OnInteractionListener {
-            override fun onBindingClick(item: ChatItem) {
+            override fun onBindingClick(item: ChatItem, itemPosition: Int) {
                 chatAdapter.addItem(
-                    item.copy(id = ++id)
+                    item.copy(id = ++id),
+                    itemPosition
                 )
             }
         })
     }
+    private lateinit var touchHelperCallBack: ItemTouchHelper.Callback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,20 +52,82 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         // DividerDecoration
-        val dividerDecoration = MaterialDividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL).apply {
-            dividerInsetStart = 250
-            isLastItemDecorated = false
-            dividerColor = resources.getColor(R.color.grey_100, theme)
-            dividerThickness = 2
-        }
+//        val dividerDecoration =
+//            MaterialDividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL).apply {
+//                dividerInsetStart = 250
+//                isLastItemDecorated = false
+//                dividerColor = resources.getColor(R.color.grey_100, theme)
+//                dividerThickness = 2
+//            }
 
-            binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+        val layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.recyclerView.apply {
+            this.layoutManager = layoutManager
             adapter = chatAdapter
 //            addItemDecoration(dividerDecoration)
             addItemDecoration(MyDecoration(this@MainActivity))
+
+            addOnScrollListener(MyPageScrollListener(layoutManager).apply {
+                setOnLoadMoreListener {
+                    chatAdapter.addItems(stubItems, chatAdapter.itemCount)
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Items count now is ${chatAdapter.itemCount}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            )
         }
+
+        touchHelperCallBack = getTouchHelperCallback()
+        val itemTouchHelper = ItemTouchHelper(touchHelperCallBack)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+
+        stubItems.forEach { item ->
+            item.onClickListener = {
+                Toast.makeText(
+                    this,
+                    getString(R.string.last_message, item.userName, item.lastMessage),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
         chatAdapter.populate(stubItems)
+    }
+
+    private fun getTouchHelperCallback(): ItemTouchHelper.Callback {
+        val touchHelperCallBack = object : MyTouchHelperCallBack(this@MainActivity) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                chatAdapter.swapItem(viewHolder.adapterPosition, target.adapterPosition)
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val item = chatAdapter.list[position]
+
+                chatAdapter.removeItem(position)
+
+                val snackBar = Snackbar.make(
+                    viewHolder.itemView,
+                    "Item was removed from the list.",
+                    Snackbar.LENGTH_LONG
+                )
+                snackBar.setAction("RESTORE") {
+                    chatAdapter.restoreItem(item, position)
+                }
+                snackBar.setActionTextColor(getColor(R.color.blue_400))
+                snackBar.show()
+            }
+        }
+        return touchHelperCallBack
     }
 
     companion object {

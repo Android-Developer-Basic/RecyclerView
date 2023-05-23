@@ -5,12 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/grey_300"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/user_name"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        tools:text="TextView" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/user_avatar"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="@dimen/chat_item_margin_16"
-        android:layout_marginTop="@dimen/chat_item_margin_8"
+        android:layout_width="@dimen/avatar_size_72dp"
+        android:layout_height="@dimen/avatar_size_72dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,108 +30,110 @@
 
     <TextView
         android:id="@+id/user_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/chat_item_margin_8"
-        android:layout_marginTop="@dimen/chat_item_margin_8"
-        android:fontFamily="@font/inter_bold"
-        android:textColor="@color/black"
-        android:text="TextView"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/user_avatar"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/chat_item_margin_8"
-        android:layout_marginEnd="@dimen/chat_item_margin_16"
-        android:fontFamily="@font/inter"
-        android:text="TextView"
-        android:textColor="@color/grey_100"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter"
-        android:text="TextView"
-        android:textColor="@color/grey_300"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/user_name"
-        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/inter_bold"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/scam_icon"
+        app:layout_constraintStart_toEndOf="@id/user_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="@dimen/avatar_size_72dp"
+        tools:text="User name"/>
 
     <TextView
         android:id="@+id/scam_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/chat_item_margin_8"
-        android:fontFamily="@font/inter_semibold"
-        android:text="@string/scam"
-        android:paddingHorizontal="6dp"
+        android:layout_marginStart="@dimen/margin_8dp"
         android:background="@drawable/style_spam_text"
+        android:fontFamily="@font/inter_semibold"
         android:gravity="center"
+        android:paddingHorizontal="6dp"
+        android:text="@string/scam"
         android:textColor="@color/spam_red"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
         app:layout_constraintStart_toEndOf="@+id/user_name"
-        app:layout_constraintTop_toTopOf="@id/user_name"
-        app:layout_constraintBottom_toBottomOf="@id/user_name"/>
+        app:layout_constraintTop_toTopOf="@+id/user_name"
+        app:layout_goneMarginEnd="@dimen/margin_8dp"
+        tools:visibility="visible"
+        />
 
     <ImageView
         android:id="@+id/verified_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/chat_item_margin_8"
-        app:layout_goneMarginStart="@dimen/chat_item_margin_8"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
         app:layout_constraintStart_toEndOf="@+id/scam_icon"
-        app:layout_constraintTop_toTopOf="@id/user_name"
-        app:layout_constraintBottom_toBottomOf="@id/user_name"
+        app:layout_constraintTop_toTopOf="@+id/user_name"
+        app:layout_goneMarginEnd="@dimen/margin_8dp"
+        app:layout_goneMarginStart="@dimen/margin_8dp"
         app:srcCompat="@drawable/ic_verified_18"
-        android:visibility="gone"/>
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/muted_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/chat_item_margin_8"
-        app:layout_goneMarginStart="@dimen/chat_item_margin_8"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
         app:layout_constraintStart_toEndOf="@+id/verified_image"
-        app:layout_constraintTop_toTopOf="@id/user_name"
-        app:layout_constraintBottom_toBottomOf="@id/user_name"
+        app:layout_constraintTop_toTopOf="@+id/user_name"
+        app:layout_goneMarginEnd="@dimen/margin_8dp"
+        app:layout_goneMarginStart="@dimen/margin_8dp"
         app:srcCompat="@drawable/ic_muted_18"
-        android:visibility="gone"/>
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/unread_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/chat_item_margin_16"
+        android:layout_marginEnd="@dimen/margin_16dp"
         android:background="@drawable/unread_message_bg"
         android:fontFamily="@font/inter"
         android:foregroundGravity="center"
         android:gravity="center"
-        android:text="1"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="1"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/message_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/date"
-        app:layout_constraintEnd_toStartOf="@+id/date"
-        app:layout_constraintTop_toTopOf="@+id/date"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
+        app:layout_constraintEnd_toStartOf="@id/date"
+        app:layout_constraintTop_toTopOf="@+id/user_name"
         app:srcCompat="@drawable/style_message_status"
-        android:visibility="gone"/>
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/grey_100"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_name"
+        tools:text="TextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

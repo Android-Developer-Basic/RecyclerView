@@ -5,15 +5,24 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.view.View
+import android.widget.TextView
+import androidx.core.view.marginEnd
+import androidx.core.view.marginStart
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.imageview.ShapeableImageView
 
-class MyDecoration(context: Context) : RecyclerView.ItemDecoration() {
+class MyDecoration(
+    private  val context: Context
+) : RecyclerView.ItemDecoration() {
 
     private val rect = Rect()
     private val paint = Paint().apply {
         color = context.getColor(R.color.grey_100)
-        strokeWidth = 2F
+        strokeWidth = STROKE_WIDTH
     }
+
+    private lateinit var avatarView: ShapeableImageView
+    private lateinit var userNameView: TextView
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -22,27 +31,45 @@ class MyDecoration(context: Context) : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         outRect.apply {
-            top = 16
-            bottom = 16
+            top = TOP_OFFSET.dp2px(context)
+            bottom = BOTTOM_OFFSET.dp2px(context)
         }
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
 
-        val left = parent.paddingLeft  + 250
+        // TODO each time to find views???
+        avatarView = parent.findViewById(R.id.user_avatar)
+        userNameView = parent.findViewById(R.id.user_name)
+
+        val left = avatarView.width +
+                parent.paddingLeft +
+                avatarView.marginStart +
+                avatarView.marginEnd +
+                userNameView.marginStart
         val right = parent.width
 
         val childCount = parent.childCount
         for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
             parent.getDecoratedBoundsWithMargins(child, rect)
-
-//            val position =
-//                parent.getChildAdapterPosition(child).let { if (it == RecyclerView.NO_POSITION) return else it }
-
-            c.drawLine(left.toFloat(), rect.top.toFloat(), right.toFloat(), rect.top.toFloat(), paint)
+            c.drawLine(
+                left.toFloat(),
+                rect.top.toFloat(),
+                right.toFloat(),
+                rect.top.toFloat(),
+                paint
+            )
         }
+    }
 
+    private fun Int.dp2px(context: Context): Int =
+        (this *context.resources.displayMetrics.density).toInt()
+
+    companion object {
+        const val TOP_OFFSET = 2
+        const val BOTTOM_OFFSET = 2
+        private const val STROKE_WIDTH = 2F
     }
 }

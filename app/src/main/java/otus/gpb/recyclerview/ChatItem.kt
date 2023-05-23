@@ -6,16 +6,13 @@ data class ChatItem(
     val lastMessage: String,
     val date: String,
     val avatar: String? = null,
-
     val isMuted: Boolean = false,
     val isVerified: Boolean = false,
     val isScam: Boolean = false,
-
     val isLastMessageMine: Boolean = false,
     val isMessageDelivered: Boolean = false,
     val isMessageRead:Boolean = false,
-
     val unreadMessageCount: Int = 0
 ) {
-    val onClickListener: ((item: ChatItem) -> Unit)? = null
+    var onClickListener: ((item: ChatItem) -> Unit)? = null
 }

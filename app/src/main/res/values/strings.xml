@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RecyclerView</string>
     <string name="scam">SCAM</string>
+    <string name="last_message">%1$s\'s last msg: %2$s</string>
 </resources>
