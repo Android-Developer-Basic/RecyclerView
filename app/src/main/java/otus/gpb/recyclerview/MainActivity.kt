@@ -31,11 +31,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-
+        //due to onStart calls many times, and onCreate calls once,
+        // all entities that required to be instantiated ONCE go to onCreate
 
         val listToSubmit = Stubs.stubItems.onEach { item ->
             item.onClickListener = {
