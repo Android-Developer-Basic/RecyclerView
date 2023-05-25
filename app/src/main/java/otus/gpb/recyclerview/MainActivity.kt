@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.apply {
             this.layoutManager = layoutManager
             adapter = chatAdapter
-            addItemDecoration(MyDecoration(this@MainActivity))
+            addItemDecoration(MyDecoration(this.context))
 
             addOnScrollListener(MyPageScrollListener(layoutManager).apply {
                 setOnLoadMoreListener {
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getTouchHelperCallback(): ItemTouchHelper.Callback {
-        val touchHelperCallBack = object : MyTouchHelperCallBack(this@MainActivity) {
+        val touchHelperCallBack = object : MyTouchHelperCallBack(binding.recyclerView.context) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
