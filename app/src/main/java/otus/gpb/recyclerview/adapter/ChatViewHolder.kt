@@ -31,6 +31,8 @@ class ChatViewHolder(
         if (item.unreadMessageCount > 0) {
             unreadMessage.visibility = View.VISIBLE
             unreadMessage.text = item.unreadMessageCount.countToText()
+        } else {
+            unreadMessage.visibility = View.GONE
         }
 
         userAvatar.setOnClickListener {
