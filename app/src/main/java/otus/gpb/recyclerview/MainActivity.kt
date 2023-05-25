@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import otus.gpb.recyclerview.adapter.ChatListAdapter
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val layoutManager = LinearLayoutManager(this@MainActivity, )
+        val layoutManager = LinearLayoutManager(binding.recyclerView.context)
         binding.recyclerView.apply {
             this.layoutManager = layoutManager
             adapter = chatAdapter
@@ -68,6 +69,9 @@ class MainActivity : AppCompatActivity() {
         touchHelperCallBack = getTouchHelperCallback()
         val itemTouchHelper = ItemTouchHelper(touchHelperCallBack)
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.recyclerView)
     }
 
     private fun getTouchHelperCallback(): ItemTouchHelper.Callback {
