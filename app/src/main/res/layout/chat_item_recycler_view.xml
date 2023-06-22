@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="10dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatar_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/message_and_title_group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintWidth_percent="0.25"
+        tools:src="@tools:sample/avatars"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/message_and_title_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/avatar_image"
+        app:layout_constraintEnd_toStartOf="@id/datetime_and_status_group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:gravity="start"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/author"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/verification_image"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notification_image"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/verification_image"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Author" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/author"
+            tools:text="Message"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/datetime_and_status_group"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/message_and_title_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/message_status_image"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/date_time"
+            app:layout_constraintEnd_toStartOf="@id/date_time"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:lines="1"
+            android:layout_gravity="bottom|end"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Day" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/circle_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_status_image"
+            app:layout_constraintVertical_bias="0.40"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintWidth_percent="0.35"
+            app:layout_constraintHeight_percent="0.25" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/message_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_status_image"
+            app:layout_constraintVertical_bias="0.40"
+            app:layout_constraintWidth_percent="0.35"
+            tools:text="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
