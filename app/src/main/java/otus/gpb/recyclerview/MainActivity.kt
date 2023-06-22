@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<RecyclerView>(R.id.recyclerView)?.apply {
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)?.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = chatAdapter
 
@@ -28,6 +29,29 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(divider)
         }
 
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
+            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+                return makeMovementFlags(ItemTouchHelper.ACTION_STATE_SWIPE, ItemTouchHelper.LEFT)
+            }
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+
+                if (direction == ItemTouchHelper.LEFT) {
+                    chatAdapter.removeItem(position)
+                    chatAdapter.notifyItemRemoved(position)
+                }
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(recyclerView)
         chatAdapter.submitData(ChatApp().getItems())
     }
 }

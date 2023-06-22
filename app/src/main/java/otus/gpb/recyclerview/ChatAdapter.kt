@@ -25,4 +25,8 @@ class ChatAdapter: RecyclerView.Adapter<ChatViewHolder>() {
         list.clear()
         list.addAll(data)
     }
+
+    fun removeItem(adapterPosition: Int) {
+        list.removeAt(adapterPosition)
+    }
 }
