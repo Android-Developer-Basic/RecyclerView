@@ -10,18 +10,33 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private val chatAdapter: ChatAdapter by lazy {
         ChatAdapter()
     }
+    private  val chatItems = ChatApp().getItems()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)?.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+        val linearLayoutManager = LinearLayoutManager(this@MainActivity)
+        val paging = PagingRecycler(linearLayoutManager).apply {
+            setOnLoadMoreListener {
+                val items = mutableListOf<ChatItem>()
+                val count = chatItems.size - 1
+                for (i in 1..10) {
+                    items.add(chatItems[Random.nextInt(count)])
+                }
+                chatAdapter.submitData(items)
+                chatAdapter.notifyItemInserted(items.count())
+            }
+        }
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
+            layoutManager = linearLayoutManager
             adapter = chatAdapter
 
             val divider = DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
@@ -30,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 divider.setDrawable(it)
             }
             addItemDecoration(divider)
+            addOnScrollListener(paging)
         }
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
@@ -81,6 +97,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
         itemTouchHelper.attachToRecyclerView(recyclerView)
-        chatAdapter.submitData(ChatApp().getItems())
+        chatAdapter.submitData(chatItems)
     }
 }
