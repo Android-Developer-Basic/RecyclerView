@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/imageView_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar" />
+
+    <TextView
+        android:id="@+id/textView_nick"
+        style="@style/Primary.Medium.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="Telegram Support"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_subLine"
+        style="@style/Primary.Medium.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Support"
+        android:layout_marginTop="3dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView_nick"/>
+
+    <TextView
+        android:id="@+id/textView_lastMas"
+        style="@style/Primary.Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textColor="?attr/last_mas"
+        android:text="Yes it happened."
+        app:layout_constraintStart_toEndOf="@+id/imageView_preview"
+        app:layout_constraintTop_toBottomOf="@+id/textView_subLine" />
+
+    <ImageView
+        android:id="@+id/imageView_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:paddingEnd="6dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView_subLine" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="79dp" />
+
+    <ImageView
+        android:id="@+id/imageView_verified_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textView_nick"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/verified_icon" />
+
+    <ImageView
+        android:id="@+id/imageView_scam_patch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView_verified_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/scam_patch" />
+
+    <ImageView
+        android:id="@+id/imageView_mute_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView_scam_patch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mute_icon" />
+
+    <TextView
+        android:id="@+id/textView_time"
+        style="@style/Primary.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="13dp"
+        android:text="Thu"
+        android:textColor="?attr/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView_time"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/check_icon" />
+
+    <ImageView
+        android:id="@+id/imageView_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_circle_24" />
+
+    <TextView
+        android:id="@+id/textView_count"
+        style="@style/Primary.Medium.Count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_circle"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_circle"
+        app:layout_constraintStart_toStartOf="@+id/imageView_circle"
+        app:layout_constraintTop_toTopOf="@+id/imageView_circle" />
+</androidx.constraintlayout.widget.ConstraintLayout>
