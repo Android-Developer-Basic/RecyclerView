@@ -25,15 +25,20 @@ class Adapter: RecyclerView.Adapter<ViewHolder>() {    //создает viewHold
         return item.size
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {                              //передаем данные во вьюхолдер
         holder.bind(item[position])
     }
 
-    fun removeItem(position: Int) {
+    fun removeItem(position: Int) {          //нужен дл скипа?
         val newItems = item.toMutableList()
         newItems.removeAt(position)          //удаляем позицию по полученному номеру
         item = newItems                      //переписываем
         notifyItemRemoved(position)
+    }
+
+    fun addItems(item: List<movieModel>) {
+        val size = this.item.size    //размер коллекции
+        this.item.addAll(item)  //addAll() добавляет все элементы из переданного в качестве аргумента объекта в список или множество
+        notifyItemInserted(size) //отслеживающие добавление, удаление или изменение позиции одного элемента???
     }
 }

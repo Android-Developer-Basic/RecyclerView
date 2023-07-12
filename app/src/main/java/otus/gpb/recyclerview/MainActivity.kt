@@ -4,12 +4,13 @@ import android.graphics.Canvas
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,13 +24,35 @@ class MainActivity : AppCompatActivity() {
         val context = this.applicationContext   //получаем контекст активити????
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)  //подгружаем разметку ресайклера
-        recyclerView.adapter = adapter                                    //дрбавить адаптер???
+        recyclerView.adapter = adapter                                    //добавляет адаптер???
         adapter.setItems(presenter.getItems())
 
-        val manager = LinearLayoutManager(this) //LinearLayoutManager - упорядочивает элементы в виде обычного вертикального или горизонтального списка указывать обязательно или тут или в хмл
+        val manager = LinearLayoutManager(this)
+        //LinearLayoutManager - упорядочивает элементы в виде обычного вертикального или горизонтального списка указывать обязательно или тут или в хмл
         recyclerView.layoutManager = manager
 
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback(){          //скип влево удалить
+
+        val dividerDrawable = AppCompatResources.getDrawable(this, R.drawable.divider)                    //получили изображение?
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {//запись в ресайклер
+                dividerDrawable?.let { setDrawable(it) }
+            })
+
+
+
+        val paging = ScrollListener(manager).apply {
+            onLoadMore = {
+                Toast.makeText(this@MainActivity, "Еще 10", Toast.LENGTH_SHORT).show()
+                adapter.addItems(presenter.getItems(adapter.itemCount))
+                isLoading = false
+            }
+        }
+        recyclerView.addOnScrollListener(paging)
+
+
+
+
+
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback(){          //скип влево удалить элемент
 
             override fun getMovementFlags(
                 recyclerView: RecyclerView,
@@ -51,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 adapter.removeItem(position)
             }
 
-            override fun onChildDraw(                           //  картинка присвайпе, наверно всегда одинаковая
+            override fun onChildDraw(                           //  картинка присвайпе, наверно всегда одинаковая схема
                 c: Canvas,
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
