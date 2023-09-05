@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Primary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="Primary.Medium">
+        <item name="fontWeight">500</item>
+    </style>
+
+    <style name="Primary.Medium.Bold">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">19sp</item>
+    </style>
+
+</resources>
