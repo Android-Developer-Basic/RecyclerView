@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="6dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/avatar_tg" />
+
+        <TextView
+            android:id="@+id/textViewNickname"
+            style="@style/Primary.Medium.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:padding="2dp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="NickName" />
+
+        <ImageView
+            android:id="@+id/imageViewVerified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNickname"
+            app:layout_constraintStart_toEndOf="@+id/textViewNickname"
+            app:layout_constraintTop_toTopOf="@+id/textViewNickname"
+            app:srcCompat="@drawable/ic_verified" />
+
+        <ImageView
+            android:id="@+id/imageViewMute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNickname"
+            app:layout_constraintStart_toEndOf="@+id/imageViewVerified"
+            app:layout_constraintTop_toTopOf="@+id/textViewNickname"
+            app:srcCompat="@drawable/ic_mute" />
+
+        <ImageView
+            android:id="@+id/imageViewScam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNickname"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMute"
+            app:layout_constraintTop_toTopOf="@+id/textViewNickname"
+            app:srcCompat="@drawable/ic_scam" />
+
+        <TextView
+            android:id="@+id/textViewGroup"
+            style="@style/Primary.Medium.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:padding="2dp"
+            app:layout_constraintStart_toStartOf="@+id/textViewNickname"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNickname"
+            tools:text="Group" />
+
+        <ImageView
+            android:id="@+id/imageViewPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:layout_constraintStart_toStartOf="@+id/textViewNickname"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGroup"
+            app:srcCompat="@drawable/mess_photo_preview" />
+
+        <TextView
+            android:id="@+id/textViewMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPreview"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGroup"
+            tools:text="Message." />
+
+        <TextView
+            android:id="@+id/textViewMessTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewMessCountCircle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:text="Day" />
+
+        <ImageView
+            android:id="@+id/imageViewCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMessTime"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMessTime"
+            app:layout_constraintTop_toTopOf="@+id/textViewMessTime"
+            app:srcCompat="@drawable/ic_check" />
+
+        <ImageView
+            android:id="@+id/imageViewMessCountCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMessTime"
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/ic_circle" />
+
+        <TextView
+            android:id="@+id/textViewMessCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewMessCountCircle"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewMessCountCircle"
+            app:layout_constraintStart_toStartOf="@+id/imageViewMessCountCircle"
+            app:layout_constraintTop_toTopOf="@+id/imageViewMessCountCircle"
+            tools:text="0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
