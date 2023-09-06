@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import otus.gpb.recyclerview.databinding.ItemMessageBinding
 
-class ChatAdapter(private val onClickListener: (Int) -> Unit) : Adapter<ChatViewHolder>() {
+class ChatAdapter() : Adapter<ChatViewHolder>() {
     private var chatList = emptyList<ChatModel>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -17,7 +17,7 @@ class ChatAdapter(private val onClickListener: (Int) -> Unit) : Adapter<ChatView
     @SuppressLint("NotifyDataSetChanged")
     fun setNewChats(newChats: List<ChatModel>){
         chatList += newChats
-        notifyDataSetChanged()
+        notifyItemInserted(itemCount)
     }
 
     fun deleteChat(position: Int){
@@ -32,10 +32,14 @@ class ChatAdapter(private val onClickListener: (Int) -> Unit) : Adapter<ChatView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        return ChatViewHolder(ItemMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false), onClickListener)
+        return ChatViewHolder(ItemMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         holder.bind(chatList[position])
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 }

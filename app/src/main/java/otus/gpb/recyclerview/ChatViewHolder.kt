@@ -5,12 +5,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import otus.gpb.recyclerview.databinding.ItemMessageBinding
 
-class ChatViewHolder(private val binding: ItemMessageBinding, private val onClickListener: (Int) -> Unit) : ViewHolder(binding.root) {
+class ChatViewHolder(private val binding: ItemMessageBinding) : ViewHolder(binding.root) {
     fun bind(model: ChatModel) {
         binding.imageViewAvatar.setImageResource(model.avatarImage)
-        binding.imageViewAvatar.setOnClickListener {
-            onClickListener.invoke(adapterPosition)//Тут нужен не номер в листе, а номер в адаптере, иначе получается Г
-        }
         binding.imageViewPreview.setImageResource(model.previewImage)
 
         binding.textViewNickname.text = model.nickName
