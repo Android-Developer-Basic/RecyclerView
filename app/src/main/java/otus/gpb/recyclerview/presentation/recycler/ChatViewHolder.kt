@@ -1,4 +1,4 @@
-package otus.gpb.recyclerview.recycler
+package otus.gpb.recyclerview.presentation.recycler
 
 import android.view.View
 import android.widget.ImageView

@@ -17,8 +17,7 @@
         android:background="@drawable/circle_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/mstiteli"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <View
         android:id="@+id/line1"
@@ -101,7 +100,8 @@
             app:layout_constraintTop_toBottomOf="@id/titleChat"
             app:layout_constraintLeft_toLeftOf="parent"
             android:background="@color/black"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:visibility="gone"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/previewText"

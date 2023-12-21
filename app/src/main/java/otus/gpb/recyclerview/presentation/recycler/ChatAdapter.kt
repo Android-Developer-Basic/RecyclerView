@@ -1,22 +1,19 @@
-package otus.gpb.recyclerview.recycler
+package otus.gpb.recyclerview.presentation.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.core.view.marginLeft
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import otus.gpb.recyclerview.R
-import otus.gpb.recyclerview.model.AccountStatus
-import otus.gpb.recyclerview.model.Chat
+import otus.gpb.recyclerview.data.model.AccountStatus
+import otus.gpb.recyclerview.data.model.Chat
 import kotlin.random.Random
 
-class ChatAdapter() : RecyclerView.Adapter<ChatViewHolder>() {
+class ChatAdapter() : ListAdapter<Chat, ChatViewHolder>(ChatDiffCallBack()){
 
-    var chatList  =  listOf<Chat>()
-        set(value){
-            field = value
-            notifyDataSetChanged()
-        }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater
             .from(parent.context)
@@ -24,14 +21,11 @@ class ChatAdapter() : RecyclerView.Adapter<ChatViewHolder>() {
         return ChatViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return chatList.size
-    }
-
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        val chat = chatList[position]
+        val chat = getItem(position)
         with(holder){
             avatar.setImageResource(chat.urlAvatar)
+            imagePreview.isGone = true
             nameChat.text = chat.nameUserInChat
             titleChat.text = chat.titleText
             if(chat.countNewMessage==0){
@@ -39,7 +33,13 @@ class ChatAdapter() : RecyclerView.Adapter<ChatViewHolder>() {
             }else {
                 countMessage.text = chat.countNewMessage.toString()
             }
-            imagePreview.isGone = false
+            imagePreview.isGone = true
+            if(imagePreview.isGone){
+                val newMargin = 0
+                val params = previewText.layoutParams as ViewGroup.MarginLayoutParams
+                params.leftMargin = newMargin
+                previewText.layoutParams = params
+            }
             previewText.text = chat.previewText
             textTime.text = chat.timeLastMessage
             val random = Random.nextBoolean()

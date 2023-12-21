@@ -1,10 +1,10 @@
-package otus.gpb.recyclerview.model
+package otus.gpb.recyclerview.data.model
 
 import androidx.annotation.DrawableRes
 
 
 data class Chat(
-    val id: Int, // позиция
+    var id: Int, // позиция
     val nameUserInChat: String, // название чата
     val titleText: String,
     @DrawableRes val  urlAvatar: Int, //String,ссылка на аватар, либо с интернета либо с файлов
