@@ -5,9 +5,9 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="TextAppearance.ViewItem.Title" parent="TextAppearance.Material3.TitleLarge">
+    <style name="TextAppearance.ViewItem.Title" parent="TextAppearance.Material3.TitleSmall">
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:textColor">@color/item_title</item>
     </style>
 
@@ -23,7 +23,7 @@
         <item name="android:textColor">@color/item_subtitle</item>
     </style>
 
-    <style name="TextAppearance.ViewItem.Text" parent="TextAppearance.Material3.TitleSmall">
+    <style name="TextAppearance.ViewItem.Text" parent="TextAppearance.Material3.BodySmall">
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/item_text</item>
@@ -33,5 +33,11 @@
         <item name="android:textSize">13sp</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/item_date_text</item>
+    </style>
+
+    <style name="TextAppearance.Badge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>

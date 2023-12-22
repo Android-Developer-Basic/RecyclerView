@@ -5,7 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,11 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val defDivider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {
-            AppCompatResources.getDrawable(this@MainActivity, R.drawable.divider)
-                ?.let { setDrawable(it) }
-        }
-//        listView.addItemDecoration(defDivider)
         listView.addItemDecoration(ChatItemDecoration(applicationContext))
         ItemTouchHelper(ChatItemTouchCallback()).attachToRecyclerView(listView)
         listView.adapter = adapter
@@ -33,12 +31,65 @@ class MainActivity : AppCompatActivity() {
             title = "Pizza",
             subtitle = "jija",
             text = "Yes, they are necessary",
-            dateTimeText = "11:38 AM"
+            dateTimeText = "11:38 AM",
+            muted = true
         ),
         Chat(
             title = "Elon",
             text = "I love /r/Reddit!",
-            dateTimeText = "12:44 AM"
+            dateTimeText = "12:44 AM",
+            muted = true
         ),
+        Chat(
+            title = "Pasha",
+            text = "How are u?",
+            dateTimeText = "Fri",
+            muted = true,
+            verified = true
+        ),
+        Chat(
+            title = "Telegram Support",
+            subtitle = "Support",
+            text = "Yes it happened.",
+            dateTimeText = "Thu",
+            verified = true,
+            unreadMessages = 1
+        ),
+        Chat(
+            title = "Karina",
+            text = "Okay",
+            dateTimeText = "Wed",
+            sent = true
+        ),
+        Chat(
+            title = "Marylin",
+            text = "Will it ever happen",
+            dateTimeText = "May 02",
+            read = true
+        ),
+        Chat(
+            title = "Item 7",
+            text = "Yes, they are necessary",
+            dateTimeText = "11:38 AM",
+            muted = true
+        ),
+        Chat(
+            title = "Item 8",
+            text = "Yes, they are necessary",
+            dateTimeText = "11:38 AM",
+            muted = true
+        ),
+        Chat(
+            title = "Item 9",
+            text = "Yes, they are necessary",
+            dateTimeText = "11:38 AM",
+            muted = true
+        ),
+        Chat(
+            title = "Item 10",
+            text = "Yes, they are necessary",
+            dateTimeText = "11:38 AM",
+            muted = true
+        )
     )
 }

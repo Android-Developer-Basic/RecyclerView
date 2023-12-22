@@ -56,4 +56,59 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="12:00 AM" />
 
+    <ImageView
+        android:id="@+id/checkmark"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/done_fill1_wght400_grad0_opsz24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dateTimeText"
+        app:tint="@color/checkmark" />
+
+    <ImageView
+        android:id="@+id/verified"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/verified_fill1_wght400_grad0_opsz24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="2dp"
+        app:tint="@color/verified" />
+
+    <ImageView
+        android:id="@+id/muted"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/volume_off_fill1_wght400_grad0_opsz24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/verified"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="2dp"
+        app:tint="@color/muted" />
+
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/circle_fill1_wght400_grad0_opsz24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="4dp"
+        app:tint="@color/badge" />
+
+    <TextView
+        style="@style/TextAppearance.Badge"
+        android:id="@+id/badgeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/badge"
+        app:layout_constraintTop_toTopOf="@+id/badge"
+        app:layout_constraintStart_toStartOf="@+id/badge"
+        app:layout_constraintBottom_toBottomOf="@+id/badge"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:text="1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
