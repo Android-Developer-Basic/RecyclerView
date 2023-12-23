@@ -2,19 +2,17 @@ package otus.gpb.recyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 
 class MainActivity : AppCompatActivity() {
 
     private val listView: RecyclerView by lazy { findViewById(R.id.recyclerView) }
-
-    private val adapter: ChatAdapter = ChatAdapter()
+    private val chatItems = getChatItems()
+    private val adapter: ChatAdapter = ChatAdapter(chatItems)
+    private val pageSize = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +21,22 @@ class MainActivity : AppCompatActivity() {
         listView.addItemDecoration(ChatItemDecoration(applicationContext))
         ItemTouchHelper(ChatItemTouchCallback()).attachToRecyclerView(listView)
         listView.adapter = adapter
-        adapter.submitList(fillChat())
+        adapter.submitList(chatItems.slice(0 until pageSize))
+        listView.addOnScrollListener(object : OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                (recyclerView.layoutManager as? LinearLayoutManager)?.apply {
+                    findLastVisibleItemPosition()
+                        .takeIf { it == itemCount - 1 && itemCount < chatItems.size }
+                        ?.let {
+                            adapter.submitList(chatItems.slice(0 until itemCount + pageSize))
+                        }
+                }
+            }
+        })
     }
 
-    private fun fillChat(): List<Chat> = mutableListOf(
+    private fun getChatItems(): MutableList<Chat> = mutableListOf(
         Chat(
             title = "Pizza",
             subtitle = "jija",
