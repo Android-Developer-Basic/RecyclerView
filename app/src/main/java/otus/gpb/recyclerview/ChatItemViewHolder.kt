@@ -32,7 +32,6 @@ class ChatItemViewHolder(view: View, val backgroundView: View) : RecyclerView.Vi
                     visibility = View.GONE
                 }
         }
-        subtitle.text = item.subtitle
         text.text = item.text
         dateTimeText.text = item.dateTimeText
         checkmark.apply {

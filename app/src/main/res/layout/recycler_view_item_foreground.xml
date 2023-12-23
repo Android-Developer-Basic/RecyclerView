@@ -19,7 +19,7 @@
     <TextView
         style="@style/TextAppearance.ViewItem.Title"
         android:id="@+id/title"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/icon"
@@ -29,7 +29,7 @@
     <TextView
         style="@style/TextAppearance.ViewItem.Subtitle"
         android:id="@+id/subtitle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/icon"
@@ -39,7 +39,7 @@
     <TextView
         style="@style/TextAppearance.ViewItem.Text"
         android:id="@+id/text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/icon"
@@ -49,7 +49,7 @@
     <TextView
         style="@style/TextAppearance.ViewItem.DateTimeText"
         android:id="@+id/dateTimeText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"

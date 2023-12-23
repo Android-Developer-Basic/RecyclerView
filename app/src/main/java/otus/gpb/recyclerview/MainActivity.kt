@@ -19,14 +19,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        listView.recycledViewPool.setMaxRecycledViews(0, 15)
         listView.addItemDecoration(ChatItemDecoration(applicationContext))
         ItemTouchHelper(ChatItemTouchCallback()).attachToRecyclerView(listView)
         listView.adapter = adapter
         adapter.submitList(fillChat())
     }
 
-    private fun fillChat(): List<Chat> = listOf(
+    private fun fillChat(): List<Chat> = mutableListOf(
         Chat(
             title = "Pizza",
             subtitle = "jija",
@@ -91,5 +91,16 @@ class MainActivity : AppCompatActivity() {
             dateTimeText = "11:38 AM",
             muted = true
         )
-    )
+    ).apply {
+        (11..60).forEach {
+            add(
+                Chat(
+                    title = "Item $it",
+                    text = "Yes, they are necessary",
+                    dateTimeText = "11:38 AM",
+                    muted = true
+                )
+            )
+        }
+    }
 }
