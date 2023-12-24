@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 
-class ChatAdapter(private val chatItems: MutableList<Chat>) : ListAdapter<Chat, ChatItemViewHolder>(ChatItemCallback()) {
+class ChatAdapter : ListAdapter<Chat, ChatItemViewHolder>(ChatItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatItemViewHolder =
         ChatItemViewHolder(
@@ -16,11 +16,4 @@ class ChatAdapter(private val chatItems: MutableList<Chat>) : ListAdapter<Chat, 
     override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) =
         holder.bind(getItem(position))
 
-    fun removeItem(position: Int) {
-        val newList = currentList.toMutableList().apply {
-            removeAt(position)
-        }
-        chatItems.removeAt(position)
-        submitList(newList)
-    }
 }

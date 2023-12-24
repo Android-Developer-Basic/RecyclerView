@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
+import android.util.Log
 import android.util.TypedValue
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
@@ -26,16 +27,16 @@ class ChatItemDecoration(private val context: Context) : ItemDecoration() {
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
 
-        parent.children.forEach { view ->
+        parent.children.forEachIndexed{ index, view ->
             parent.getDecoratedBoundsWithMargins(view, bounds)
             parent.getChildAdapterPosition(view)
                 .takeUnless { it == RecyclerView.NO_POSITION }
                 ?.let {
                     c.drawLine(
-                        bounds.left.toFloat() + padding,
-                        bounds.bottom.toFloat(),
-                        bounds.right.toFloat(),
-                        bounds.bottom.toFloat(),
+                        bounds.left.toFloat() + padding + view.translationX,
+                        bounds.bottom.toFloat() + view.translationY,
+                        bounds.right.toFloat() + view.translationX,
+                        bounds.bottom.toFloat() + view.translationY,
                         paint
                     )
                 }

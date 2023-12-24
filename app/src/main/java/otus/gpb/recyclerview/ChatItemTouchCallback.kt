@@ -6,10 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class ChatItemTouchCallback : ItemTouchHelper.Callback() {
-
-    private val RecyclerView.ViewHolder.chatAdapter: ChatAdapter
-        get() = bindingAdapter as? ChatAdapter ?: error("Not ChatAdapter")
+class ChatItemTouchCallback(private val onRemove: (Int) -> Unit) : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(p0: RecyclerView, p1: RecyclerView.ViewHolder): Int =
         makeMovementFlags(0, ItemTouchHelper.LEFT)
@@ -21,7 +18,7 @@ class ChatItemTouchCallback : ItemTouchHelper.Callback() {
     ): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) =
-        viewHolder.chatAdapter.removeItem(viewHolder.absoluteAdapterPosition)
+        onRemove(viewHolder.absoluteAdapterPosition)
 
 
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float = 0.5F

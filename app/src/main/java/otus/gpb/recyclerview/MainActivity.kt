@@ -2,6 +2,7 @@ package otus.gpb.recyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private val listView: RecyclerView by lazy { findViewById(R.id.recyclerView) }
     private val chatItems = getChatItems()
-    private val adapter: ChatAdapter = ChatAdapter(chatItems)
+    private val adapter: ChatAdapter = ChatAdapter()
     private val pageSize = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         listView.recycledViewPool.setMaxRecycledViews(0, 15)
         listView.addItemDecoration(ChatItemDecoration(applicationContext))
-        ItemTouchHelper(ChatItemTouchCallback()).attachToRecyclerView(listView)
+        ItemTouchHelper(ChatItemTouchCallback { removeItem(it) }).attachToRecyclerView(listView)
         listView.adapter = adapter
         adapter.submitList(chatItems.slice(0 until pageSize))
         listView.addOnScrollListener(object : OnScrollListener() {
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun removeItem(position: Int) {
+        chatItems.removeAt(position)
+        adapter.submitList(chatItems.slice(0 until adapter.itemCount - 1))
     }
 
     private fun getChatItems(): MutableList<Chat> = mutableListOf(
