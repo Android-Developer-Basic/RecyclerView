@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import otus.gpb.recyclerview.R
 import otus.gpb.recyclerview.data.model.AccountStatus
@@ -33,14 +34,28 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                ) {
+                    viewModel.loadData()
+                }
+            }
+        })
         setupSwipe(recyclerView)
     }
 
     private fun setupSwipe(recyclerView: RecyclerView) {
         val iconMarginDpRight = 29
         val iconMarginDpTop = 16
-        val iconMarginDpBottom = 37
-
         val background = Paint()
         val icon = getDrawable(R.drawable.arcive_icon)
 

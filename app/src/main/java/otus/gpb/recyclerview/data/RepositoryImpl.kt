@@ -11,9 +11,33 @@ object RepositoryImpl : Repository {
 
     private val chatsLD = MutableLiveData<List<Chat>>()
     private val chats = mutableListOf<Chat>()
+    private val countDataInList: Int
+        get() {
+            return chats.size
+        }
 
     init {
-        val countListData = 20
+        loadData(20)
+    }
+
+    override fun showAllChats(): LiveData<List<Chat>> {
+        return chatsLD
+    }
+
+    override fun deleteItem(chat: Chat) {
+        chats.remove(chat)
+        updateList()
+    }
+
+    private fun updateList(){
+        chatsLD.postValue(chats.toList())
+    }
+
+
+    /**
+     * countData - порция подгрузки
+     */
+    override fun loadData(countData: Int){
         val chatModel = Chat(
             0,
             "fan avengers",
@@ -26,30 +50,13 @@ object RepositoryImpl : Repository {
             0,
             AccountStatus.Group
         )
-        for (i in 0 until countListData) {
-            chats.add(chatModel.copy(id = i, nameUserInChat = "fan avengers $i"))
+        val count = countDataInList
+        for (i in 0 until countData) {
+
+            chats.add(chatModel.copy(id = i+1+count, nameUserInChat = "fan avengers ${i+1+count}"))
         }
         updateList()
-
     }
-
-    override fun showAllChats(): LiveData<List<Chat>> {
-        return chatsLD
-    }
-
-    override fun deleteItem(chat: Chat) {
-        chats.remove(chat)
-/*        for (i in chats.indices) {
-            chats[i].id = i
-        }*/
-        updateList()
-
-    }
-
-    private fun updateList(){
-        chatsLD.postValue(chats.toList())
-    }
-
 
 
 }

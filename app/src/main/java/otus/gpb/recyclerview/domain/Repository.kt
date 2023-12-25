@@ -9,4 +9,6 @@ interface Repository {
 
     fun deleteItem(chat: Chat)
 
+    fun loadData(countData: Int)
+
 }
