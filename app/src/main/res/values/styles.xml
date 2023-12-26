@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="TextAppearance.ChatItem.Title" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">roboto_black</item>
+        <item name="android:textColor">@color/black_900</item>
+    </style>
+
+    <style name="TextAppearance.ChatItem.Archive" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">roboto_black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.ChatItem.Subtitle" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">roboto_medium</item>
+        <item name="android:textColor">@color/black_800</item>
+    </style>
+
+    <style name="TextAppearance.ChatItem.Text" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">roboto_regular</item>
+        <item name="android:textColor">@color/black_600</item>
+    </style>
+
+    <style name="TextAppearance.ChatItem.DateTimeText" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">roboto_regular</item>
+        <item name="android:textColor">@color/black_500</item>
+    </style>
+
+    <style name="TextAppearance.ChatItem.Badge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">roboto_medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>
