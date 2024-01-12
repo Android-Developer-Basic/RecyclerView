@@ -30,6 +30,11 @@ class ChatAdapter: RecyclerView.Adapter<ChatViewHolder>() {
         val newChat = chatList.toMutableList()
         newChat.removeAt(position)
         chatList = newChat
-        notifyDataSetChanged()
+        notifyItemRemoved(position)
+    }
+
+    fun addChat(list:List<Chat>){
+        chatList += list
+        notifyItemInserted(itemCount)
     }
 }
