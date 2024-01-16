@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/last_names"/>
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toEndOf="@+id/messageIcon"
+        app:layout_constraintTop_toBottomOf="@+id/messageAuthor"
+        tools:text="@tools:sample/lorem"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        tools:text="@tools:sample/lorem"/>
+
+    <TextView
+        android:id="@+id/messageAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        tools:text="@tools:sample/lorem"/>
+
+    <ImageView
+        android:id="@+id/messageIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@id/message"
+        app:layout_constraintBottom_toBottomOf="@id/message"
+        app:layout_constraintTop_toBottomOf="@+id/messageAuthor"
+        android:src="@drawable/message_icon"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/verifyIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@id/name"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        android:src="@drawable/verify_icon"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/muteIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/verifyIcon"
+        app:layout_constraintTop_toTopOf="@id/name"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        android:src="@drawable/mute_icon"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/scamIcon"
+        android:layout_width="32dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/scam_icon"
+        app:layout_constraintStart_toEndOf="@+id/muteIcon"
+        app:layout_constraintTop_toTopOf="@id/name"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/readMessageIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/date"
+        app:layout_constraintTop_toTopOf="@id/date"
+        app:layout_constraintBottom_toBottomOf="@id/date"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/messageCountIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:src="@drawable/message_count"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
