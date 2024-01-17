@@ -1,10 +1,10 @@
 package otus.gpb.recyclerview
 
-data class ChatItem(
+data class Chat(
     val idAvatar: Int = R.drawable.common,
     val title: String = "",
     val subtitle: String = "",
-    val text: String = "",
+    val message: String = "",
     val dateTimeText: String = "",
     val verified: Boolean = false,
     val muted: Boolean = false,
@@ -14,49 +14,49 @@ data class ChatItem(
     val unreadMessages: Int = 0
 )
 
-fun getChatItems(): MutableList<ChatItem> = mutableListOf(
-    ChatItem(
+fun getChatItems(): MutableList<Chat> = mutableListOf(
+    Chat(
         idAvatar = R.drawable.pizza,
         title = "Pizza",
         subtitle = "jija",
-        text = "Yes, they are necessary",
+        message = "Yes, they are necessary",
         dateTimeText = "11:38 AM",
         muted = true
     ),
-    ChatItem(
+    Chat(
         idAvatar = R.drawable.elon,
         title = "Elon",
-        text = "I love /r/Reddit!",
+        message = "I love /r/Reddit!",
         dateTimeText = "12:44 AM",
         muted = true
     ),
-    ChatItem(
+    Chat(
         idAvatar = R.drawable.pasha,
         title = "Pasha",
-        text = "How are u?",
+        message = "How are u?",
         dateTimeText = "Fri",
         muted = true,
         verified = true
     ),
-    ChatItem(
+    Chat(
         title = "Telegram Support",
         subtitle = "Support",
-        text = "Yes it happened.",
+        message = "Yes it happened.",
         dateTimeText = "Thu",
         verified = true,
         unreadMessages = 1
     ),
-    ChatItem(
+    Chat(
         idAvatar = R.drawable.karina,
         title = "Karina",
-        text = "Okay",
+        message = "Okay",
         dateTimeText = "Wed",
         sent = true
     ),
-    ChatItem(
+    Chat(
         idAvatar = R.drawable.marilyn,
         title = "Marylin",
-        text = "Will it ever happen",
+        message = "Will it ever happen",
         dateTimeText = "May 02",
         scum = true,
         read = true
@@ -64,9 +64,9 @@ fun getChatItems(): MutableList<ChatItem> = mutableListOf(
 ).apply {
     (7..60).forEach {
         add(
-            ChatItem(
+            Chat(
                 title = "Item $it",
-                text = "Yes, they are necessary",
+                message = "Yes, they are necessary",
                 dateTimeText = "11:38 AM",
                 muted = true
             )

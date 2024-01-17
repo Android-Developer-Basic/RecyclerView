@@ -31,8 +31,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
-        app:layout_constraintTop_toTopOf="@id/imageViewAvatar"
-        app:layout_constraintTop_toTopf="@+id/imageViewAvatar">
+        app:layout_constraintTop_toTopOf="@id/imageViewAvatar">
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -50,38 +49,36 @@
             android:id="@+id/imageViewScum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textViewTitle"
             app:layout_constraintTop_toTopOf="@id/textViewTitle"
             app:srcCompat="@drawable/scam_patch" />
 
-        <LinearLayout
-            android:id="@+id/layoutNotScum"
+        <ImageView
+            android:id="@+id/iconVerified"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="2dp"
-            android:orientation="horizontal"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textViewTitle"
-            app:layout_constraintTop_toTopOf="@id/textViewTitle">
+            app:layout_constraintTop_toTopOf="@id/textViewTitle"
+            app:srcCompat="@drawable/verified_icon" />
 
-            <ImageView
-                android:id="@+id/iconVerified"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                tools:srcCompat="@drawable/verified_icon" />
-
-            <ImageView
-                android:id="@+id/iconMuted"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                tools:srcCompat="@drawable/mute_icon" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/iconMuted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/iconVerified"
+            app:layout_constraintTop_toTopOf="@id/textViewTitle"
+            app:srcCompat="@drawable/mute_icon" />
 
         <TextView
             android:id="@+id/textViewSubTitle"
