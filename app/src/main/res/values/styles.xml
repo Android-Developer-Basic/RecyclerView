@@ -5,39 +5,45 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="TextAppearance.ChatItem.Title" parent="TextAppearance.Material3.TitleSmall">
+    <style name="TextAppearance.ChatItem.HedLine2" parent="TextAppearance.Material3.TitleSmall">
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">roboto_black</item>
         <item name="android:textColor">@color/black_900</item>
+        <item name="font">@font/roboto_medium</item>
+        <item name="lineHeight">19sp</item>
     </style>
 
-    <style name="TextAppearance.ChatItem.Archive" parent="TextAppearance.Material3.TitleLarge">
+    <style name="TextAppearance.ChatItem.Caption" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">roboto_black</item>
         <item name="android:textColor">@color/white</item>
+        <item name="font">@font/roboto_medium</item>
+        <item name="lineHeight">13sp</item>
     </style>
 
-    <style name="TextAppearance.ChatItem.Subtitle" parent="TextAppearance.Material3.TitleSmall">
+    <style name="TextAppearance.ChatItem.Subtitle3" parent="TextAppearance.Material3.TitleSmall">
         <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">roboto_medium</item>
         <item name="android:textColor">@color/black_800</item>
+        <item name="font">@font/roboto_medium</item>
+        <item name="lineHeight">16sp</item>
     </style>
 
-    <style name="TextAppearance.ChatItem.Text" parent="TextAppearance.Material3.BodySmall">
+    <style name="TextAppearance.ChatItem.Subtitle2" parent="TextAppearance.Material3.BodySmall">
         <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">roboto_regular</item>
         <item name="android:textColor">@color/black_600</item>
+        <item name="font">@font/roboto</item>
+        <item name="lineHeight">18sp</item>
     </style>
 
-    <style name="TextAppearance.ChatItem.DateTimeText" parent="TextAppearance.Material3.BodyLarge">
+    <style name="TextAppearance.ChatItem.Subtitle" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textSize">13sp</item>
-        <item name="android:fontFamily">roboto_regular</item>
         <item name="android:textColor">@color/black_500</item>
+        <item name="font">@font/roboto</item>
+        <item name="lineHeight">15sp</item>
     </style>
 
     <style name="TextAppearance.ChatItem.Badge" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">roboto_medium</item>
         <item name="android:textColor">@color/white</item>
+        <item name="font">@font/roboto</item>
+        <item name="lineHeight">16sp</item>
     </style>
 </resources>
