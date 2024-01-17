@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ChatItemViewHolder(view: View) : RecyclerView.ViewHolder(view){
+class ChatItemViewHolder(view: View, val backgroundView: View) : RecyclerView.ViewHolder(view){
 
     private val imageViewAvatar: ImageView by lazy { itemView.findViewById(R.id.imageViewAvatar) }
     private val scum: ImageView by lazy { itemView.findViewById(R.id.imageViewScum) }

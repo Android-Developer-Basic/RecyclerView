@@ -9,7 +9,9 @@ class ChatAdapter : ListAdapter<Chat, ChatItemViewHolder>(ChatItemCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatItemViewHolder =
         ChatItemViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.chat_item_foreground, parent, false))
+                .inflate(R.layout.chat_item_foreground, parent, false),
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.chat_item_background, parent, false))
 
     override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) =
         holder.bind(getItem(position))

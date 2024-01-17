@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         listView.recycledViewPool.setMaxRecycledViews(0, 15)
+        listView.addItemDecoration(ChatItemDecoration(applicationContext))
+        ItemTouchHelper(ChatItemTouchCallback { removeItem(it) }).attachToRecyclerView(listView)
         listView.adapter = adapter
         adapter.submitList(chatItems.slice(0 until pageSize))
         listView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -30,6 +32,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 }
             }
         })
+    }
+
+    private fun removeItem(position: Int) {
+        chatItems.removeAt(position)
+        adapter.submitList(chatItems.slice(0 until adapter.itemCount - 1))
     }
 
     companion object {
