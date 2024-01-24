@@ -18,14 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         recyclerView.adapter = rvAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration =
-            DividerItemDecoration(this, RecyclerView.VERTICAL)
+        val dividerItemDecoration = DividerItemDecoration(this, RecyclerView.VERTICAL)
         dividerItemDecoration.setDrawable(
                 ResourcesCompat.getDrawable(
                         resources,
                         R.drawable.thin_line,
-                        null
-                                           )!!
+                        null)!!
                                          )
         recyclerView.addItemDecoration(dividerItemDecoration)
 

@@ -27,25 +27,13 @@ class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         message.text = item.message
         avatar.setImageResource(R.drawable.ic_launcher_foreground)
 
-        if (item.isVerified) {
-            isVerified.visibility = View.VISIBLE
-        } else {
-            isVerified.visibility = View.INVISIBLE
-        }
+        isVerified.visibility = if (item.isVerified) View.VISIBLE else View.INVISIBLE
 
-        if (item.isMuted) {
-            isMuted.visibility = View.VISIBLE
-        } else {
-            isMuted.visibility = View.INVISIBLE
-        }
+        isMuted.visibility = if (item.isMuted) View.VISIBLE else View.INVISIBLE
 
-        messageStatus.apply {
-            if (item.isRead) {
-                setImageResource(R.drawable.baseline_done_all_24)
-            } else {
-                setImageResource(R.drawable.baseline_done_24)
-            }
-        }
+        messageStatus.setImageResource(
+                if (item.isRead) R.drawable.baseline_done_all_24 else R.drawable.baseline_done_24
+                                      )
 
         dateTime.text = item.dateTimeText
 
