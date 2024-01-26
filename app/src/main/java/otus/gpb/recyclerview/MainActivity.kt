@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     val total = rvAdapter.itemCount
 
                     if ((visibleItemCount + pastVisibleItem) >= total) {
-                        rvAdapter.setItems(loadMore())
+                        rvAdapter.updateItems(loadMore())
                     }
                 }
             }

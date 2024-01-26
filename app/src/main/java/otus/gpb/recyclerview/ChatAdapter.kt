@@ -22,6 +22,11 @@ class ChatAdapter : RecyclerView.Adapter<ChatViewHolder>() {
     }
 
     fun setItems(items: List<Message>) {
+        itemsList = items.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    fun updateItems(items: List<Message>) {
         val diffutilsCallback = ChatMessagesComparator(itemsList, items)
         val diff = DiffUtil.calculateDiff(diffutilsCallback)
         itemsList.addAll(items)
