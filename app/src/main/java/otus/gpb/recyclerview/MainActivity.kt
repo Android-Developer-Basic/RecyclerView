@@ -5,15 +5,23 @@ import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val listView: RecyclerView by lazy { findViewById(R.id.recyclerView) }
     private val adapter: ChatAdapter by lazy { ChatAdapter() }
+    private var pastVisibleItems = 0
+    private var visibleItemCount = 0
+    private var totalItems = 0
+    private var myLayoutManager: LinearLayoutManager? = null
+    private var loading = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         listView.adapter = adapter
+        myLayoutManager = LinearLayoutManager(this)
+        listView.layoutManager = myLayoutManager
 
         val dividerDrawable = AppCompatResources.getDrawable(this, R.drawable.divider)
         val defDivider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {
@@ -21,7 +29,26 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
         listView.addItemDecoration(defDivider)
         ItemTouchHelper(TouchCallback(adapter)).attachToRecyclerView(listView)
-        adapter.setItems(fillList())
+
+        adapter.setItems(fillList().slice(0 until 10))
+        listView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    visibleItemCount = myLayoutManager!!.childCount
+                    totalItems = myLayoutManager!!.itemCount
+                    pastVisibleItems = myLayoutManager!!.findFirstVisibleItemPosition()
+                    if (loading) {
+                        if (visibleItemCount + pastVisibleItems >= totalItems && totalItems < fillList().size - 1) {
+                            loading = false
+                            adapter.setItems(fillList().slice(0 until totalItems + 10))
+                            adapter!!.notifyDataSetChanged()
+                            loading = true
+                        }
+                    }
+                }
+            }
+        })
     }
 
     private fun fillList(): List<ChatItem> {
