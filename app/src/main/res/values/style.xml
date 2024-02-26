@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="circleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <dimen name="headline16">16sp</dimen>
+    <dimen name="regular15">15sp</dimen>
+    <dimen name="subtitle14">14sp</dimen>
+
+    <style name="ChatPreview.headline16Medium" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/headline16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#222222</item>
+    </style>
+
+    <style name="ChatPreview.regular15" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/regular15</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#8D8E90</item>
+    </style>
+
+    <style name="ChatPreview.subtitle14Medium" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/subtitle14</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#434449</item>
+    </style>
+</resources>
