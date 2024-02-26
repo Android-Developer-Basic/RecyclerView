@@ -8,9 +8,18 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.random.Random
 
-
 interface ChatItemsRepository {
-  fun fetchChatItems(): Flow<List<ChatItem>>
+  fun fetchChatItems(params: FetchParams): Flow<ChatItems>
+
+  data class FetchParams(
+    val fromIndex: Int,
+    val amount: Int,
+  )
+
+  data class ChatItems(
+    val items: List<ChatItem>,
+    val total: Int,
+  )
 }
 
 class ChatItemsRepositoryImpl : ChatItemsRepository {
@@ -39,13 +48,36 @@ class ChatItemsRepositoryImpl : ChatItemsRepository {
     println("TEST inited cacheItems: $cacheItems")
   }
 
-  override fun fetchChatItems(): Flow<List<ChatItem>> = flow {
-    emit(cacheItems)
-  }.flowOn(Dispatchers.IO)
+  override fun fetchChatItems(params: ChatItemsRepository.FetchParams): Flow<ChatItemsRepository.ChatItems> =
+    flow {
+      kotlinx.coroutines.delay(1000L)
+      val fromIndex = Math.min(params.fromIndex, TOTAL_GENERATED_ITEMS)
+      val toIndex =
+        Math.min(fromIndex + params.amount - 1, TOTAL_GENERATED_ITEMS)
+
+      if (fromIndex == TOTAL_GENERATED_ITEMS) {
+        emit(
+          ChatItemsRepository.ChatItems(
+            items = emptyList(),
+            total = TOTAL_GENERATED_ITEMS,
+          )
+        )
+        return@flow
+      }
+
+      val nextItems = cacheItems.slice(fromIndex..toIndex)
+
+      emit(
+        ChatItemsRepository.ChatItems(
+          items = nextItems,
+          total = TOTAL_GENERATED_ITEMS,
+        )
+      )
+    }.flowOn(Dispatchers.IO)
 
   private fun generateChatItems(): List<ChatItem> = mutableListOf<ChatItem>()
     .apply {
-      for (i in 0..50) {
+      for (i in 0..TOTAL_GENERATED_ITEMS) {
         val randomIndex = (0..10).random()
         val imgRes =
           if (randomIndex < avatarImgResSet.size) avatarImgResSet[randomIndex] else R.drawable.avatar4
@@ -82,6 +114,7 @@ class ChatItemsRepositoryImpl : ChatItemsRepository {
     }
 
   companion object {
+    private const val TOTAL_GENERATED_ITEMS = 100
     private var instance: ChatItemsRepositoryImpl? = null
 
     fun getInstance(): ChatItemsRepository =

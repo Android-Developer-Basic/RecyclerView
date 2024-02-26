@@ -6,6 +6,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 
@@ -25,6 +26,17 @@ class MainActivity : AppCompatActivity() {
 
     ItemTouchHelper(ChatItemTouchCallback()).attachToRecyclerView(listView)
     initChatItemsSubscription()
+
+    listView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        super.onScrolled(recyclerView, dx, dy)
+        (recyclerView.layoutManager as LinearLayoutManager).apply {
+          if (childCount + findFirstVisibleItemPosition() >= adapter.itemCount) {
+            viewModel.fetchNextChatItems()
+          }
+        }
+      }
+    })
   }
 
   private fun getListItemDecoration(): RecyclerView.ItemDecoration {
