@@ -1,12 +1,37 @@
 package otus.gpb.recyclerview
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import otus.gpb.recyclerview.Adapters.ChatAdapter
+import otus.gpb.recyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    val viewModel = MainViewModel()
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: ChatAdapter
+    private lateinit var  mLayoutManager: RecyclerView.LayoutManager;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        mLayoutManager = LinearLayoutManager(this)
+        binding.recyclerView.setLayoutManager(mLayoutManager);
+
+        subscribe()
+    }
+
+    fun subscribe() {
+        viewModel.chats.observe(this) { chats ->
+            // Update UI with the new count value
+            adapter.addList(chats)
+        }
+
+        adapter = ChatAdapter()
+        binding.recyclerView.adapter = adapter
+        viewModel.loadData()
     }
 }
