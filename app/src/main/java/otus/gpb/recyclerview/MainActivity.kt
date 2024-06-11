@@ -13,14 +13,10 @@ class MainActivity : AppCompatActivity() {
     val viewModel = MainViewModel()
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ChatAdapter
-    private lateinit var  mLayoutManager: RecyclerView.LayoutManager;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mLayoutManager = LinearLayoutManager(this)
-        binding.recyclerView.setLayoutManager(mLayoutManager);
-
         subscribe()
     }
 
