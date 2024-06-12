@@ -36,6 +36,17 @@ class MainActivity : AppCompatActivity() {
         adapter = ChatAdapter()
         binding.recyclerView.addItemDecoration(getListRecyclerDecoration())
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                (recyclerView.layoutManager as LinearLayoutManager).apply {
+                    if (childCount + findFirstVisibleItemPosition() >= adapter.itemCount) {
+                        viewModel.loadMore()
+                    }
+                }
+            }
+        })
+
     }
 
     private fun getListRecyclerDecoration(): RecyclerView.ItemDecoration {

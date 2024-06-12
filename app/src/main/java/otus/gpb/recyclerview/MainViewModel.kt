@@ -133,6 +133,28 @@ class MainViewModel: ViewModel() {
 
     }
 
+    fun loadMore() {
+        var result: MutableList<ChatItem> = emptyList<ChatItem>().toMutableList()
+        for (i in 0..9) {
+            result.add(
+                ChatItem(
+                    id = java.util.UUID.randomUUID().toString(),
+                    imgRes = generateImage(),
+                    title = generateTitle(),
+                    subject = generateSubject(),
+                    isMuted = Random.nextBoolean(),
+                    lastMessage = LastMessage(title = "Will it ever happen", hasImg = false),
+                    unReadCount = generateUnread(),
+                    isMessageSend = Random.nextBoolean(),
+                    isMessageRead = Random.nextBoolean(),
+                    date = generateDate(),
+                    status = generateStatus()
+                )
+            )
+        }
+        chats.value = result
+    }
+
     @DrawableRes
     fun generateImage(): Int {
         val rnds = (0..10).random()
@@ -162,5 +184,50 @@ class MainViewModel: ViewModel() {
 
     fun generateUnread(): Int {
         return (0..5).random()
+    }
+
+    fun generateDate(): Date {
+        val rnds = (0..5).random()
+        val currentTime = System.currentTimeMillis()
+        val hourInMillis = 60 * 60 * 1000
+        if(rnds % 5 == 0) {
+            return Date(currentTime)
+        } else if(rnds % 5 == 1) {
+            return Date(currentTime - hourInMillis * 2)
+        } else if(rnds % 5 == 2) {
+            return Date(currentTime - hourInMillis * 4)
+        } else if(rnds % 5 == 3) {
+            return Date(currentTime - hourInMillis * 24 * 3)
+        } else  {
+            return Date(currentTime - hourInMillis * 24 * 7)
+        }
+    }
+
+    fun generateTitle() : String {
+        val rnds = (0..6).random()
+        if(rnds % 6 == 0) {
+            return "Pizza"
+        } else if(rnds % 6 == 1) {
+            return "Elon"
+        } else if(rnds % 6 == 2) {
+            return "Pasha"
+        } else if(rnds % 6 == 3) {
+            return "Telegram Support"
+        } else if(rnds % 6 == 4) {
+            return "Karina"
+        } else {
+            return "Marilyn"
+        }
+    }
+
+    fun generateSubject() : String {
+        val rnds = (0..3).random()
+        if(rnds % 3 == 0) {
+            return "jija"
+        } else if(rnds % 3 == 1) {
+            return "Support"
+        } else {
+            return ""
+        }
     }
 }
