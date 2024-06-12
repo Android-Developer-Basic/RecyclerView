@@ -3,6 +3,8 @@ package otus.gpb.recyclerview
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import otus.gpb.recyclerview.Adapters.ChatAdapter
@@ -26,8 +28,23 @@ class MainActivity : AppCompatActivity() {
             adapter.addList(chats)
         }
 
-        adapter = ChatAdapter()
-        binding.recyclerView.adapter = adapter
+        configureRecycler()
         viewModel.loadData()
+    }
+
+    fun configureRecycler() {
+        adapter = ChatAdapter()
+        binding.recyclerView.addItemDecoration(getListRecyclerDecoration())
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun getListRecyclerDecoration(): RecyclerView.ItemDecoration {
+        val dividerDrawable =
+            AppCompatResources.getDrawable(this, R.drawable.chat_divider)
+        return DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {
+            dividerDrawable?.let {
+                setDrawable(it)
+            }
+        }
     }
 }
