@@ -34,6 +34,11 @@ class ChatAdapter: RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun  remove(position: Int) {
+        items.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     inner class ChatItemViewHolder(private val binding: ChatLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ChatItem) {
             binding.title.text = item.title
