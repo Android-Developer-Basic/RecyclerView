@@ -92,7 +92,7 @@ class MainViewModel: ViewModel() {
                 unReadCount = generateUnread(),
                 isMessageSend = Random.nextBoolean(),
                 isMessageRead = Random.nextBoolean(),
-                date = Date(currentTime - hourInMillis * 24),
+                date = Date(currentTime - 7 * hourInMillis * 24),
                 status = generateStatus()
             )
         )
@@ -187,11 +187,11 @@ class MainViewModel: ViewModel() {
     }
 
     fun generateDate(): Date {
-        val rnds = (0..5).random()
+        val rnds = (0..10).random()
         val currentTime = System.currentTimeMillis()
         val hourInMillis = 60 * 60 * 1000
         if(rnds % 5 == 0) {
-            return Date(currentTime)
+            return Date(currentTime - hourInMillis * 24 * 7)
         } else if(rnds % 5 == 1) {
             return Date(currentTime - hourInMillis * 2)
         } else if(rnds % 5 == 2) {

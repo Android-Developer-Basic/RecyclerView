@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import otus.gpb.recyclerview.TimeUtil
 import otus.gpb.recyclerview.databinding.ChatLayoutBinding
 import otus.gpb.recyclerview.models.ChatItem
 import otus.gpb.recyclerview.models.ChatStatus
@@ -90,6 +91,8 @@ class ChatAdapter: RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
             } else {
                 binding.unreadBudge.visibility = View.GONE
             }
+
+            binding.date.text = TimeUtil.getTime(item.date)
         }
     }
 
