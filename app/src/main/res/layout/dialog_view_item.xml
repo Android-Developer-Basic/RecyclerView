@@ -10,8 +10,13 @@
         android:layout_height="57dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="11dp"
-        android:contentDescription="Avatar"
+        android:background="@drawable/circle_background"
         android:src="@drawable/default_avatar"
+        android:clipToOutline="true"
+        android:contentDescription="Avatar"
+        android:scaleType="centerCrop"
+        app:circularflow_defaultRadius="100dp"
+        app:circularflow_radiusInDP="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
