@@ -16,11 +16,15 @@ class ChatAdapter : RecyclerView.Adapter<ChatViewHolder>() {
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         list.getOrNull(position)?.let{holder.bind(it)}
-        holder.bind(list[position])
     }
     fun setItems(items: List<ChatItem>){
         list = items
         notifyDataSetChanged()
+    }
+
+    fun deleteItem(position: Int) {
+        // Удаление элемента из списка
+        notifyItemRemoved(position)
     }
 
 }

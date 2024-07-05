@@ -1,8 +1,11 @@
 package otus.gpb.recyclerview
 
 import DividerItemDecoration
+import SwipeToDeleteCallback
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +22,21 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.addItemDecoration(itemDecoration)
 
-        recyclerView.adapter = adapter
+
+
+        // Свайп
+        val swipeHandler = object : SwipeToDeleteCallback(adapter) {
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+                // Реализация анимации свайпа
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         adapter.setItems(generateList())
+
+        recyclerView.adapter = adapter
 
 
     }
