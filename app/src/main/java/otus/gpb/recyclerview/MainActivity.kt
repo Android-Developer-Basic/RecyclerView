@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity() {
         repeat(50){
             val person = ChatItem(
                 id = it,
-                name = "Name + $it",
+                name = "Name $it",
                 title = "Name title $it",
-                message = "This is message",
+                message = "This is message $it",
                 time = "12:12 AM",
                 image = R.drawable.default_avatar
             )

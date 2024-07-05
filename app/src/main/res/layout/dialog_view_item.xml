@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageAvatar"
-        android:layout_width="57dp"
-        android:layout_height="57dp"
+        android:layout_width="58dp"
+        android:layout_height="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="11dp"
         android:background="@drawable/circle_background"
@@ -61,10 +61,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/roboto"
         android:text="Message"
         android:textColor="@color/textMessage"
         android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nameTV"
         app:layout_constraintTop_toBottomOf="@+id/titleTV" />
 
