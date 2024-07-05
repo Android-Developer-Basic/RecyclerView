@@ -1,5 +1,6 @@
 package otus.gpb.recyclerview
 
+import DividerItemDecoration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
@@ -11,11 +12,17 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = ChatAdapter()
 
+        val itemDecoration = DividerItemDecoration(this)
+
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        recyclerView.addItemDecoration(itemDecoration)
 
         recyclerView.adapter = adapter
 
         adapter.setItems(generateList())
+
 
     }
 
