@@ -4,10 +4,12 @@ import DividerItemDecoration
 import SwipeToDeleteCallback
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 // Рисуем иконку удаления
                 val deleteIcon = ContextCompat.getDrawable(itemView.context, R.drawable.package_down)
                 val iconMargin = (itemView.height - deleteIcon?.intrinsicHeight!!) / 2
-                val iconTop = itemView.top + (itemView.height - deleteIcon.intrinsicHeight) / 2
+                val iconTop = itemView.top + (itemView.height - deleteIcon.intrinsicHeight) / 2 - 20
                 val iconBottom = iconTop + deleteIcon.intrinsicHeight
 
                 if (dX < -50) {
@@ -49,6 +51,19 @@ class MainActivity : AppCompatActivity() {
                     val iconRight = itemView.right - iconMargin
                     deleteIcon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
                     deleteIcon.draw(c)
+
+                    // Рисуем текст под иконкой
+                    val textPaint = Paint().apply {
+                        color = Color.WHITE
+                        textSize = 32f // Размер текста
+                        typeface = ResourcesCompat.getFont(itemView.context, R.font.roboto_medium)
+                    }
+                    val text = "Archive" // Текст под иконкой
+                    val textWidth = textPaint.measureText(text)
+                    val textX = (iconLeft + iconRight - textWidth) / 2
+                    val textY = iconBottom + 40F // Расстояние от иконки до текста
+
+                    c.drawText(text, textX, textY, textPaint)
                 }
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             }
