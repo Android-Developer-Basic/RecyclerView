@@ -12,7 +12,7 @@ class ChatViewHolder (
         private val message: TextView by lazy { view.findViewById(R.id.messageTV) }
         private val time: TextView by lazy { view.findViewById(R.id.timeTV) }
         private val image: ImageView by lazy { view.findViewById(R.id.imageAvatar) }
-        fun bind(item: Chat){
+        fun bind(item: ChatItem){
             name.text = item.name
             title.text = item.title
             message.text = item.message

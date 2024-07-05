@@ -2,8 +2,6 @@ package otus.gpb.recyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -22,9 +20,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun generateList() = run {
-        val list = mutableListOf<Chat>()
+        val list = mutableListOf<ChatItem>()
         repeat(50){
-            val person = Chat(
+            val person = ChatItem(
                 id = it,
                 name = "Name + $it",
                 title = "Name title $it",
