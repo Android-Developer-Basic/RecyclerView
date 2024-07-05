@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageAvatar"
         android:layout_width="57dp"
         android:layout_height="57dp"
         android:layout_marginStart="10dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/nameTV"
         style="@style/TextAppearanceForRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,32 +30,33 @@
         android:layout_marginTop="9dp"
         android:text="Sender name"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageAvatar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/statusIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:contentDescription="icon"
         android:src="@drawable/icon_not_found"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/nameTV"
+        app:layout_constraintTop_toTopOf="@+id/nameTV" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleTV"
         style="@style/TextAppearanceForRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="Title"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/nameTV"
+        app:layout_constraintTop_toBottomOf="@+id/nameTV" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/messageTV"
         style="@style/TextAppearanceForRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,11 +65,11 @@
         android:text="Message"
         android:textColor="@color/textMessage"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/nameTV"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
 
     <TextView
-        android:id="@+id/time_text_view"
+        android:id="@+id/timeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

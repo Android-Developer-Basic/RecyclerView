@@ -1,12 +1,9 @@
 package otus.gpb.recyclerview
 
-data class DialogViewItem(
-    val id: Int,
+data class Chat(
     val name: String,
     val title: String,
     val message: String,
     val time: String,
     val image: Int
 )
-{
-}
