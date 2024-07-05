@@ -20,6 +20,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatViewHolder>() {
     }
     fun setItems(items: List<Chat>){
         list = items
+        notifyDataSetChanged()
     }
 
 }
