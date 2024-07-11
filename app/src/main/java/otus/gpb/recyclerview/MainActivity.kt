@@ -113,7 +113,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNextItems() {
-        val newItems = generateList().subList(items.size, items.size + 10)
-        items.addAll(newItems)
+        if (items.count() != generateList().size){
+            val newItems = generateList().subList(items.size, items.size + 10).toMutableList()
+            items.addAll(newItems)
+        }
+
+
     }
 }
