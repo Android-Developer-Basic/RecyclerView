@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -81,12 +82,15 @@ class MainActivity : AppCompatActivity() {
 
         val paging = PageScrollListener(manager).apply{
             onLoadMore = {
+                Toast.makeText(this@MainActivity, "Loading more...", Toast.LENGTH_SHORT).show()
+                addNextItems()
+                adapter.notifyDataSetChanged()
                 //adapter.addItems()
             }
         }
         recyclerView.addOnScrollListener(paging)
 
-        items.addAll(generateList())
+        addNextItems()
 
         adapter.notifyDataSetChanged()
 
@@ -106,5 +110,10 @@ class MainActivity : AppCompatActivity() {
             list.add(person)
         }
         list.toList()
+    }
+
+    private fun addNextItems() {
+        val newItems = generateList().subList(items.size, items.size + 10)
+        items.addAll(newItems)
     }
 }
