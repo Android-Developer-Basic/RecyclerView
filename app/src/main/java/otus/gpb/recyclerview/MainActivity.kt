@@ -23,10 +23,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = ChatAdapter(items)
+        val manager = LinearLayoutManager(this)
+
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        adapter = ChatAdapter(items)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = manager
         val itemDecoration = DividerItemDecoration(this)
 
 
@@ -76,6 +78,13 @@ class MainActivity : AppCompatActivity() {
 
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+
+        val paging = PageScrollListener(manager).apply{
+            onLoadMore = {
+                //adapter.addItems()
+            }
+        }
+        recyclerView.addOnScrollListener(paging)
 
         items.addAll(generateList())
 
