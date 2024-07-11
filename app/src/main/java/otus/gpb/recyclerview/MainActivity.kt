@@ -18,14 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
         val adapter = ChatAdapter()
-
         val itemDecoration = DividerItemDecoration(this)
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         recyclerView.addItemDecoration(itemDecoration)
