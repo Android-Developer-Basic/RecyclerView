@@ -81,8 +81,6 @@ class MainActivity : AppCompatActivity() {
 
         adapter.notifyDataSetChanged()
 
-
-
     }
 
     fun generateList() = run {
