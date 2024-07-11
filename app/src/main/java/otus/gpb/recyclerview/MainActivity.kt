@@ -11,16 +11,24 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ChatAdapter
+    private val items = mutableListOf<ChatItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val adapter = ChatAdapter()
-        val itemDecoration = DividerItemDecoration(this)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val adapter = ChatAdapter(items)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val itemDecoration = DividerItemDecoration(this)
+
 
         recyclerView.addItemDecoration(itemDecoration)
 
@@ -69,9 +77,10 @@ class MainActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
-        adapter.setItems(generateList())
+        items.addAll(generateList())
 
-        recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
+
 
 
     }
