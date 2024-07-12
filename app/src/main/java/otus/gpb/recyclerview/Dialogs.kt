@@ -13,6 +13,7 @@ class Dialogs {
                 hasPrevPic = true,
                 title = "jija",
                 message = "Yes, they are necessary",
+                messageState = MessageState.IS_READ,
                 time = "11:38 AM",
                 image = R.drawable.avatar1
             )
@@ -27,6 +28,7 @@ class Dialogs {
                 hasPrevPic = false,
                 title = "Name title $it",
                 message = "This is message $it",
+                messageState = MessageState.IS_SENT,
                 time = "12:12 AM",
                 image = R.drawable.default_avatar
             )

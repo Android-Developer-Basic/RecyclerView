@@ -24,7 +24,7 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
         private val title: TextView by lazy { itemView.findViewById(R.id.titleTV) }
         private val hasPrevPic: ImageView by lazy { itemView.findViewById(R.id.prevPic) }
         private val message: TextView by lazy { itemView.findViewById(R.id.messageTV) }
-        private val time: TextView by lazy { itemView.findViewById(R.id.timeTV) }
+        private val messageState: ImageView by lazy { itemView.findViewById(R.id.messageState) }
         private val time: TextView by lazy { itemView.findViewById(R.id.timeTV) }
         private val image: ImageView by lazy { itemView.findViewById(R.id.imageAvatar) }
         fun bind(item: ChatItem){
@@ -40,6 +40,8 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
             }
             title.text = item.title
             message.text = item.message
+            if (item.messageState == MessageState.IS_SENT) messageState.setImageResource(R.drawable.check_svgrepo_com)
+            if (item.messageState == MessageState.IS_READ) messageState.setImageResource(R.drawable.check_read_svgrepo_com)
             time.text = item.time
             image.setImageResource(item.image)
 

@@ -105,6 +105,14 @@
         app:layout_constraintStart_toEndOf="@+id/prevPic"
         app:layout_constraintTop_toBottomOf="@+id/titleTV" />
 
+    <ImageView
+        android:id="@+id/messageState"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/timeTV"
+        app:layout_constraintTop_toTopOf="@+id/timeTV" />
+
     <TextView
         android:id="@+id/timeTV"
         android:layout_width="wrap_content"
@@ -117,7 +125,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
+    <TextView
+        android:id="@+id/circleTextView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_counter"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/timeTV"
+        app:layout_constraintTop_toBottomOf="@+id/timeTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

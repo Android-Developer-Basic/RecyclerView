@@ -16,4 +16,6 @@
     <color name="swipe_color">#FF66A9E0</color>
     <color name="verified_icon">#FF4B91CA</color>
     <color name="scam">#FFE64646</color>
+    <color name="message_states">#FF48A938</color>
+    <color name="circle_counter">#FF3D95D4</color>
 </resources>
