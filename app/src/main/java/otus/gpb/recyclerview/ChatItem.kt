@@ -10,5 +10,6 @@ data class ChatItem(
     val title: String,
     val message: String,
     val time: String,
+    val messageCounter: String,
     val image: Int
 )

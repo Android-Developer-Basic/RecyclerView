@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginStart
 import androidx.recyclerview.widget.RecyclerView
 
 enum class MessageState {
     IS_READ,
     IS_SENT,
-    IS_NOT_INCOMING
+    IS_INCOMING
 }
 
 class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
@@ -26,6 +25,7 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
         private val message: TextView by lazy { itemView.findViewById(R.id.messageTV) }
         private val messageState: ImageView by lazy { itemView.findViewById(R.id.messageState) }
         private val time: TextView by lazy { itemView.findViewById(R.id.timeTV) }
+        private val messageCounter: TextView by lazy { itemView.findViewById(R.id.messageCounter) }
         private val image: ImageView by lazy { itemView.findViewById(R.id.imageAvatar) }
         fun bind(item: ChatItem){
             name.text = item.name
@@ -42,7 +42,9 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
             message.text = item.message
             if (item.messageState == MessageState.IS_SENT) messageState.setImageResource(R.drawable.check_svgrepo_com)
             if (item.messageState == MessageState.IS_READ) messageState.setImageResource(R.drawable.check_read_svgrepo_com)
+            if (item.messageState == MessageState.IS_INCOMING) messageState.visibility = View.GONE
             time.text = item.time
+            if (item.messageCounter != "0") messageCounter.text = item.messageCounter else messageCounter.visibility = View.GONE
             image.setImageResource(item.image)
 
         }

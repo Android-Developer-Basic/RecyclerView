@@ -126,13 +126,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/circleTextView"
+        android:id="@+id/messageCounter"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/circle_counter"
         android:gravity="center"
-        android:text="0"
+        android:fontFamily="@font/roboto_medium"
+        android:text="1"
+        android:textSize="14sp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/timeTV"
         app:layout_constraintTop_toBottomOf="@+id/timeTV" />
