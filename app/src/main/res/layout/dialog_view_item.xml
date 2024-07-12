@@ -34,12 +34,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/statusIcon"
+        android:id="@+id/MutedIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:contentDescription="icon"
-        android:src="@drawable/icon_not_found"
+        android:contentDescription="mute"
         app:layout_constraintBottom_toBottomOf="@+id/nameTV"
         app:layout_constraintStart_toEndOf="@+id/nameTV"
         app:layout_constraintTop_toTopOf="@+id/nameTV" />

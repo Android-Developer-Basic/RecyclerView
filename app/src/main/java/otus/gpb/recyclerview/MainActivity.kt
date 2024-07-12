@@ -96,25 +96,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun generateList() = run {
-        val list = mutableListOf<ChatItem>()
-        repeat(50){
-            val person = ChatItem(
-                id = it,
-                name = "Name $it",
-                title = "Name title $it",
-                message = "This is message $it",
-                time = "12:12 AM",
-                image = R.drawable.default_avatar
-            )
-            list.add(person)
-        }
-        list.toList()
-    }
+//    fun generateList() = run {
+//        val list = mutableListOf<ChatItem>()
+//        repeat(50){
+//            val person = ChatItem(
+//                name = "Name $it",
+//                title = "Name title $it",
+//                message = "This is message $it",
+//                time = "12:12 AM",
+//                image = R.drawable.default_avatar
+//            )
+//            list.add(person)
+//        }
+//        list.toList()
+//    }
 
     private fun addNextItems() {
-        if (items.count() != generateList().size){
-            val newItems = generateList().subList(items.size, items.size + 10).toMutableList()
+        if (items.count() != Dialogs.generateList().size){
+            val newItems = Dialogs.generateList().subList(items.size, items.size + 10).toMutableList()
             items.addAll(newItems)
         }
 
