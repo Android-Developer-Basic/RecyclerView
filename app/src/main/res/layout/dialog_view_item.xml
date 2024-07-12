@@ -79,11 +79,22 @@
         app:layout_constraintStart_toStartOf="@+id/nameTV"
         app:layout_constraintTop_toBottomOf="@+id/nameTV" />
 
+    <ImageView
+        android:id="@+id/prevPic"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/prevpic"
+        android:layout_marginTop="2dp"
+        android:contentDescription="mute"
+        app:layout_constraintStart_toStartOf="@+id/titleTV"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
     <TextView
         android:id="@+id/messageTV"
         style="@style/TextAppearanceForRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/roboto"
@@ -91,7 +102,7 @@
         android:textColor="@color/textMessage"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/prevPic"
         app:layout_constraintTop_toBottomOf="@+id/titleTV" />
 
     <TextView
