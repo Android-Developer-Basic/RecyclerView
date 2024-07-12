@@ -34,13 +34,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/VerifiedIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/nameTV"
+        app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+    <ImageView
         android:id="@+id/MutedIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:contentDescription="mute"
         app:layout_constraintBottom_toBottomOf="@+id/nameTV"
-        app:layout_constraintStart_toEndOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/VerifiedIcon"
+        app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+    <TextView
+        android:id="@+id/ScamIcon"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:contentDescription="scam"
+        android:text="SCAM"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/scam"
+        android:background="@drawable/scam_background"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/MutedIcon"
         app:layout_constraintTop_toTopOf="@+id/nameTV" />
 
     <TextView

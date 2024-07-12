@@ -11,6 +11,8 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val name: TextView by lazy { itemView.findViewById(R.id.nameTV) }
         private val isMuted: ImageView by lazy { itemView.findViewById(R.id.MutedIcon) }
+        private val isVerified: ImageView by lazy { itemView.findViewById(R.id.VerifiedIcon) }
+        private val isScam: ImageView by lazy { itemView.findViewById(R.id.ScamIcon) }
         private val title: TextView by lazy { itemView.findViewById(R.id.titleTV) }
         private val message: TextView by lazy { itemView.findViewById(R.id.messageTV) }
         private val time: TextView by lazy { itemView.findViewById(R.id.timeTV) }
@@ -18,6 +20,8 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
         fun bind(item: ChatItem){
             name.text = item.name
             if (item.isMuted) isMuted.setImageResource(R.drawable.volume_off)
+            if (item.isVerified) isVerified.setImageResource(R.drawable.check_decagram)
+            if (item.isScam) isScam.setImageResource(R.drawable.check_decagram)
             title.text = item.title
             message.text = item.message
             time.text = item.time

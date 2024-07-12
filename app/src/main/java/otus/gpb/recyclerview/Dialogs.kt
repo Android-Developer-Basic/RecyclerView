@@ -8,6 +8,8 @@ class Dialogs {
             var person = ChatItem(
                 name = "Pizza",
                 isMuted = true,
+                isVerified = true,
+                isScam = true,
                 title = "jija",
                 message = "Yes, they are necessary",
                 time = "11:38 AM",
@@ -15,7 +17,20 @@ class Dialogs {
             )
             list.add(person)
 
-            return list
+            repeat(49){
+            val person = ChatItem(
+                name = "Name $it",
+                isMuted = false,
+                isVerified = true,
+                isScam = true,
+                title = "Name title $it",
+                message = "This is message $it",
+                time = "12:12 AM",
+                image = R.drawable.default_avatar
+            )
+            list.add(person)
+        }
+            return list.toList()
         }
     }
 }
