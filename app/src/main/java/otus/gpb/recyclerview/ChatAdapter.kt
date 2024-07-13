@@ -65,21 +65,13 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
 
             if (title.text == null) {
                 title.visibility = View.GONE
-                var params = hasPrevPic.layoutParams as ConstraintLayout.LayoutParams
-                params.topToBottom = R.id.nameTV
-                hasPrevPic.layoutParams = params
-                title.setText(null)
 
-                params = message.layoutParams as ConstraintLayout.LayoutParams
-                params.topToBottom = R.id.nameTV
-                message.layoutParams = params
             } else {
                 title.visibility = View.VISIBLE
                 title.text = item.title
             }
-
-
             message.text = item.message
+
             if (item.messageState == MessageState.IS_SENT) messageState.setImageResource(R.drawable.check_svgrepo_com)
             if (item.messageState == MessageState.IS_READ) messageState.setImageResource(R.drawable.check_read_svgrepo_com)
             if (item.messageState == MessageState.IS_INCOMING) messageState.visibility = View.GONE
