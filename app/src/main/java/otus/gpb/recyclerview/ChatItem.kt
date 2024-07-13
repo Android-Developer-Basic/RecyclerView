@@ -7,9 +7,9 @@ data class ChatItem(
     val isScam: Boolean,
     val hasPrevPic: Boolean,
     val messageState: MessageState,
-    val title: String,
+    val title: String?,
     val message: String,
     val time: String,
-    val messageCounter: String,
+    val messageCounter: Int?,
     val image: Int
 )

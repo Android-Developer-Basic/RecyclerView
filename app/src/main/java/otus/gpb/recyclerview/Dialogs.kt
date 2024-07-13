@@ -15,7 +15,7 @@ class Dialogs {
                 message = "Yes, they are necessary",
                 messageState = MessageState.IS_INCOMING,
                 time = "11:38 AM",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.avatar1
             )
             list.add(person)
@@ -30,7 +30,7 @@ class Dialogs {
                 message = "I love /r/Reddit!",
                 messageState = MessageState.IS_INCOMING,
                 time = "12:44 AM",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.avatar2
             )
             list.add(person)
@@ -45,7 +45,7 @@ class Dialogs {
                 message = "How are u?",
                 messageState = MessageState.IS_INCOMING,
                 time = "Fri",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.avatar3
             )
             list.add(person)
@@ -60,7 +60,7 @@ class Dialogs {
                 message = "Android is better",
                 messageState = MessageState.IS_READ,
                 time = "15:02 AM",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.avatar4
             )
             list.add(person)
@@ -75,7 +75,7 @@ class Dialogs {
                 message = "Yes it happened.",
                 messageState = MessageState.IS_INCOMING,
                 time = "Thu",
-                messageCounter = "1",
+                messageCounter = 1,
                 image = R.drawable.avatar5
             )
             list.add(person)
@@ -90,7 +90,7 @@ class Dialogs {
                 message = "Okay",
                 messageState = MessageState.IS_SENT,
                 time = "Wed",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.avatar6
             )
             list.add(person)
@@ -105,12 +105,12 @@ class Dialogs {
                 message = "Will it ever happen",
                 messageState = MessageState.IS_READ,
                 time = "May 02",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.avatar7
             )
             list.add(person)
 
-            repeat(50){
+            repeat(43){
             val person = ChatItem(
                 name = "Name $it",
                 isMuted = false,
@@ -121,7 +121,7 @@ class Dialogs {
                 message = "This is message $it",
                 messageState = MessageState.IS_SENT,
                 time = "12:12 AM",
-                messageCounter = "0",
+                messageCounter = null,
                 image = R.drawable.default_avatar
             )
             list.add(person)

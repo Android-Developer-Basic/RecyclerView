@@ -29,22 +29,66 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
         private val image: ImageView by lazy { itemView.findViewById(R.id.imageAvatar) }
         fun bind(item: ChatItem){
             name.text = item.name
-            if (item.isMuted) isMuted.setImageResource(R.drawable.volume_off)
+            if (item.isMuted) {
+                isMuted.visibility = View.VISIBLE
+                isMuted.setImageResource(R.drawable.volume_off)
+            }
+            else isMuted.visibility = View.GONE
             if (item.isVerified) isVerified.setImageResource(R.drawable.check_decagram)
             if (!item.isScam) isScam.visibility = View.GONE
-            if (item.hasPrevPic) hasPrevPic.setImageResource(R.drawable.prevpic) else {
+            else isScam.visibility = View.VISIBLE
+            if (item.hasPrevPic) {
+                val params = message.layoutParams as ConstraintLayout.LayoutParams
+                params.marginStart = 6
+                message.layoutParams = params
+                hasPrevPic.visibility = View.VISIBLE
+                hasPrevPic.setImageResource(R.drawable.prevpic)
+            }
+            else {
                 hasPrevPic.visibility = View.GONE
                 val params = message.layoutParams as ConstraintLayout.LayoutParams
                 params.marginStart = 0
                 message.layoutParams = params
             }
-            title.text = item.title
+//            if (title.text != null)
+//            {
+//                title.visibility = View.VISIBLE
+//                title.text = item.title
+//            }
+//            else
+//            {
+//                title.visibility = View.GONE
+////                val params = title.layoutParams as ConstraintLayout.LayoutParams
+////                params.bottomToTop
+////                title.layoutParams = params
+//            }
+
+            if (title.text == null) {
+                title.visibility = View.GONE
+                var params = hasPrevPic.layoutParams as ConstraintLayout.LayoutParams
+                params.topToBottom = R.id.nameTV
+                hasPrevPic.layoutParams = params
+                title.setText(null)
+
+                params = message.layoutParams as ConstraintLayout.LayoutParams
+                params.topToBottom = R.id.nameTV
+                message.layoutParams = params
+            } else {
+                title.visibility = View.VISIBLE
+                title.text = item.title
+            }
+
+
             message.text = item.message
             if (item.messageState == MessageState.IS_SENT) messageState.setImageResource(R.drawable.check_svgrepo_com)
             if (item.messageState == MessageState.IS_READ) messageState.setImageResource(R.drawable.check_read_svgrepo_com)
             if (item.messageState == MessageState.IS_INCOMING) messageState.visibility = View.GONE
             time.text = item.time
-            if (item.messageCounter != "0") messageCounter.text = item.messageCounter else messageCounter.visibility = View.GONE
+            if (item.messageCounter != null) {
+                messageCounter.visibility = View.VISIBLE
+                messageCounter.text = item.messageCounter.toString()
+            }
+            else messageCounter.visibility = View.GONE
             image.setImageResource(item.image)
 
         }
