@@ -1,5 +1,6 @@
 package otus.gpb.recyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,12 +64,20 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
 ////                title.layoutParams = params
 //            }
 
-            if (title.text == null) {
+            if (item.title.isNullOrEmpty()) {
                 title.visibility = View.GONE
+                Log.i("title","title1")
+                val params = message.layoutParams as ConstraintLayout.LayoutParams
+                params.verticalBias = 0.0F
+                message.layoutParams = params
 
-            } else {
-                title.visibility = View.VISIBLE
+            }
+            else {
+                Log.i("title","title2")
                 title.text = item.title
+                val params = message.layoutParams as ConstraintLayout.LayoutParams
+                params.verticalBias = 1F
+                message.layoutParams = params
             }
             message.text = item.message
 

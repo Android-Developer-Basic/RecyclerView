@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="80dp">
 
     <ImageView
         android:id="@+id/imageAvatar"
@@ -73,8 +73,6 @@
         style="@style/TextAppearanceForRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text=""
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/nameTV"
         app:layout_constraintTop_toBottomOf="@+id/nameTV" />
@@ -83,11 +81,10 @@
         android:id="@+id/prevPic"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginTop="2dp"
         android:contentDescription="mute"
         android:src="@drawable/prevpic"
         app:layout_constraintStart_toStartOf="@+id/nameTV"
-        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+        app:layout_constraintTop_toTopOf="@+id/messageTV" />
 
     <TextView
         android:id="@+id/messageTV"
@@ -95,15 +92,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="6dp"
         android:fontFamily="@font/roboto"
         android:text="Message"
         android:textColor="@color/textMessage"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/prevPic"
-        app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+        app:layout_constraintTop_toBottomOf="@+id/nameTV"
+        app:layout_constraintVertical_bias="1" />
 
     <ImageView
         android:id="@+id/messageState"

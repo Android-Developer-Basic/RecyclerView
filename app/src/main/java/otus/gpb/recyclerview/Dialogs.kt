@@ -41,7 +41,7 @@ class Dialogs {
                 isVerified = true,
                 isScam = false,
                 hasPrevPic = false,
-                title = "",
+                title = null,
                 message = "How are u?",
                 messageState = MessageState.IS_INCOMING,
                 time = "Fri",
