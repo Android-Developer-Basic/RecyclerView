@@ -67,17 +67,12 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
             if (item.title.isNullOrEmpty()) {
                 title.visibility = View.GONE
                 Log.i("title","title1")
-                val params = message.layoutParams as ConstraintLayout.LayoutParams
-                params.verticalBias = 0.0F
-                message.layoutParams = params
+
 
             }
             else {
                 Log.i("title","title2")
                 title.text = item.title
-                val params = message.layoutParams as ConstraintLayout.LayoutParams
-                params.verticalBias = 1F
-                message.layoutParams = params
             }
             message.text = item.message
 
