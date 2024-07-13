@@ -6,6 +6,7 @@ class Dialogs {
         fun generateList() : List<ChatItem> {
             val list = mutableListOf<ChatItem>()
             var person = ChatItem(
+                id = 1,
                 name = "Pizza",
                 isMuted = true,
                 isVerified = false,
@@ -21,6 +22,7 @@ class Dialogs {
             list.add(person)
 
             person = ChatItem(
+                id = 2,
                 name = "Elon",
                 isMuted = true,
                 isVerified = false,
@@ -36,6 +38,7 @@ class Dialogs {
             list.add(person)
 
             person = ChatItem(
+                id = 3,
                 name = "Pasha",
                 isMuted = true,
                 isVerified = true,
@@ -51,6 +54,7 @@ class Dialogs {
             list.add(person)
 
             person = ChatItem(
+                id = 4,
                 name = "Tim Cook",
                 isMuted = true,
                 isVerified = true,
@@ -66,6 +70,7 @@ class Dialogs {
             list.add(person)
 
             person = ChatItem(
+                id = 5,
                 name = "Telegram Support",
                 isMuted = false,
                 isVerified = true,
@@ -81,6 +86,7 @@ class Dialogs {
             list.add(person)
 
             person = ChatItem(
+                id = 6,
                 name = "Karina",
                 isMuted = false,
                 isVerified = false,
@@ -96,6 +102,7 @@ class Dialogs {
             list.add(person)
 
             person = ChatItem(
+                id = 7,
                 name = "Marilyn",
                 isMuted = false,
                 isVerified = false,
@@ -112,7 +119,8 @@ class Dialogs {
 
             repeat(43){
             val person = ChatItem(
-                name = "Name $it",
+                id = it + 8,
+                name = "Name ${it + 8}",
                 isMuted = false,
                 isVerified = true,
                 isScam = true,

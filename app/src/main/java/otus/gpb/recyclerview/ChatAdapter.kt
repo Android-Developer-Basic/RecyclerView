@@ -51,27 +51,11 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
                 params.marginStart = 0
                 message.layoutParams = params
             }
-//            if (title.text != null)
-//            {
-//                title.visibility = View.VISIBLE
-//                title.text = item.title
-//            }
-//            else
-//            {
-//                title.visibility = View.GONE
-////                val params = title.layoutParams as ConstraintLayout.LayoutParams
-////                params.bottomToTop
-////                title.layoutParams = params
-//            }
 
             if (item.title.isNullOrEmpty()) {
                 title.visibility = View.GONE
-                Log.i("title","title1")
-
-
             }
             else {
-                Log.i("title","title2")
                 title.text = item.title
             }
             message.text = item.message
@@ -89,6 +73,10 @@ class ChatAdapter(private val items: MutableList<ChatItem>) : RecyclerView.Adapt
 
         }
     }
+//    init {
+//        setHasStableIds(true)
+//    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.dialog_view_item, parent, false)
         return ChatViewHolder(view)

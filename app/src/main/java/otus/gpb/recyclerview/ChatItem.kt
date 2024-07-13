@@ -1,6 +1,7 @@
 package otus.gpb.recyclerview
 
 data class ChatItem(
+    val id: Int,
     val name: String,
     val isMuted: Boolean,
     val isVerified: Boolean,
@@ -13,3 +14,5 @@ data class ChatItem(
     val messageCounter: Int?,
     val image: Int
 )
+
+
