@@ -1,12 +1,13 @@
 package otus.gpb.recyclerview
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -16,7 +17,13 @@ class ChatAdapter (private val items: MutableList<ChatItem>) : RecyclerView.Adap
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.chat_item, parent, false)
         return ChatViewHolder(view)
     }
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
     fun removeAt(index: Int) {
         items.removeAt(index)
         notifyItemRemoved(index)
@@ -30,18 +37,26 @@ class ChatAdapter (private val items: MutableList<ChatItem>) : RecyclerView.Adap
         holder.bind(items[position])
     }
 
+    fun onLoadMore(context: Context) {
+        Toast.makeText(context, "Load more", Toast.LENGTH_LONG).show()
+        val newChatItems = GenerateChatItems().getList(10)
+        val getCountItems = items.size
+        items.addAll(newChatItems)
+        this.notifyItemRangeInserted(getCountItems, newChatItems.size)
+    }
+
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val mainImg: ShapeableImageView by lazy { itemView.findViewById(R.id.image_icon) }
-        private val mainName: TextView by lazy { itemView.findViewById(R.id.text_view_name) }
-        private val bottomName: TextView by lazy { itemView.findViewById(R.id.text_view_name_bottom) }
-        private val imgMessage: ImageView by lazy {itemView.findViewById(R.id.img_message)  }
-        private val message: TextView by lazy { itemView.findViewById(R.id.text_view_message) }
-        private val imgVerified: ImageView by lazy { itemView.findViewById(R.id.img_verified) }
-        private val imgMuted: ImageView by lazy { itemView.findViewById(R.id.img_noise) }
-        private val time: TextView by lazy { itemView.findViewById(R.id.text_view_time) }
-        private val imgFixed: ImageButton by lazy { itemView.findViewById(R.id.img_button_fixed) }
-        private val imgStateMessage: ImageView by lazy { itemView.findViewById(R.id.img_readed) }
+        private val mainImg: ShapeableImageView = itemView.findViewById(R.id.image_icon)
+        private val mainName: TextView = itemView.findViewById(R.id.text_view_name)
+        private val bottomName: TextView = itemView.findViewById(R.id.text_view_name_bottom)
+        private val imgMessage: ImageView = itemView.findViewById(R.id.img_message)
+        private val message: TextView = itemView.findViewById(R.id.text_view_message)
+        private val imgVerified: ImageView = itemView.findViewById(R.id.img_verified)
+        private val imgMuted: ImageView = itemView.findViewById(R.id.img_noise)
+        private val time: TextView = itemView.findViewById(R.id.text_view_time)
+        private val imgFixed: ImageButton = itemView.findViewById(R.id.img_button_fixed)
+        private val imgStateMessage: ImageView = itemView.findViewById(R.id.img_readed)
 
         fun bind(itemChat: ChatItem) {
             mainName.text = itemChat.mainName
@@ -72,9 +87,7 @@ class ChatAdapter (private val items: MutableList<ChatItem>) : RecyclerView.Adap
                 imgMessage.setImageResource(itemChat.messageImg)
             }
             else {
-                val params = message.layoutParams as ConstraintLayout.LayoutParams
-                params.marginStart = 0
-                message.layoutParams = params
+                imgMessage.visibility = View.GONE
             }
         }
     }

@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChatAdapter
-    private var items = GenerateChatItems().getList()
+    private var items = GenerateChatItems().getList(20)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         val paging = PageScrollListener(manager).apply {
             onLoadMore = {
-                Toast.makeText(this@MainActivity, "Load more", Toast.LENGTH_LONG).show()
-                    val newChatItems = GenerateChatItems().getList().subList(0, 9).toMutableList()
-                    items.addAll(newChatItems)
-                adapter.notifyDataSetChanged()
+                adapter.onLoadMore(this@MainActivity)
                 isLoading = false
             }
         }

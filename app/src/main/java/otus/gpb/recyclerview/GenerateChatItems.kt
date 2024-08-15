@@ -5,8 +5,10 @@ import kotlin.random.Random
 class GenerateChatItems {
     private val list = mutableListOf<ChatItem>()
 
-    fun getList(): MutableList<ChatItem>{
-        for (i in 1..20) {
+
+
+    fun getList(count: Int): MutableList<ChatItem>{
+        for (i in 1..count) {
             val mainName = getRandomMainName()
             val secondaryName = getRandomSecondaryName()
             val textMessage = getRandomMessage()
