@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -17,13 +18,7 @@ class ChatAdapter (private val items: MutableList<ChatItem>) : RecyclerView.Adap
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.chat_item, parent, false)
         return ChatViewHolder(view)
     }
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
 
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
     fun removeAt(index: Int) {
         items.removeAt(index)
         notifyItemRemoved(index)

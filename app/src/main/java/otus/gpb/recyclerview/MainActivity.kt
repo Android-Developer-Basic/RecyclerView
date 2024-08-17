@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         adapter = ChatAdapter(items)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = manager
-
+        recyclerView.setItemViewCacheSize(100)
         val swipeHandler = object : SwipeCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 adapter.removeAt(viewHolder.adapterPosition)
