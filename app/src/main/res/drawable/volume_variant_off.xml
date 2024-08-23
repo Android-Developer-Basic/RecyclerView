@@ -1,0 +1,7 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filled_mute"
+    android:layout_width="18dp"
+    android:layout_height="18dp"
+    />
+
