@@ -21,9 +21,9 @@ class ChatAdapter(private var chats: MutableList<Chat>) : RecyclerView.Adapter<C
         return chats.size
     }
 
-    fun addItems(items: MutableList<Chat>) {
+    fun addItems(items: List<Chat>) {
         chats.addAll(items)
-        notifyItemRangeChanged(1, 7)
+        notifyItemRangeInserted(chats.size - items.size, items.size)
     }
 
     fun removeItem(position: Int) {
