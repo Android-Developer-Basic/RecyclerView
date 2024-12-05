@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+    <string name="profile_image">Profile image</string>
+    <string name="done">done</string>
+    <string name="verified">verified</string>
+    <string name="volume_off">volume off</string>
+    <string name="message_count">message count</string>
 </resources>
