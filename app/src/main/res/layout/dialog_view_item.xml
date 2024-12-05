@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/imageAvatar"
+        android:layout_width="58dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/circle_background"
+        android:src="@drawable/default_avatar"
+        android:clipToOutline="true"
+        android:contentDescription="Avatar"
+        android:scaleType="centerCrop"
+        app:circularflow_defaultRadius="100dp"
+        app:circularflow_radiusInDP="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        style="@style/TextAppearanceForRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="9dp"
+        android:text="Sender name"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageAvatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/VerifiedIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/nameTV"
+        app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+    <ImageView
+        android:id="@+id/MutedIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:contentDescription="mute"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/VerifiedIcon"
+        app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+    <TextView
+        android:id="@+id/ScamIcon"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:contentDescription="scam"
+        android:text="SCAM"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/scam"
+        android:background="@drawable/scam_background"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+        app:layout_constraintStart_toEndOf="@+id/MutedIcon"
+        app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+    <TextView
+        android:id="@+id/titleTV"
+        style="@style/TextAppearanceForRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/nameTV"
+        app:layout_constraintTop_toBottomOf="@+id/nameTV" />
+
+    <ImageView
+        android:id="@+id/prevPic"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:contentDescription="mute"
+        android:src="@drawable/prevpic"
+        app:layout_constraintStart_toStartOf="@+id/nameTV"
+        app:layout_constraintTop_toTopOf="@+id/messageTV" />
+
+    <TextView
+        android:id="@+id/messageTV"
+        style="@style/TextAppearanceForRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/roboto"
+        android:text="Message"
+        android:textColor="@color/textMessage"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prevPic"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV"
+            app:layout_constraintVertical_bias="0" />
+
+    <ImageView
+        android:id="@+id/messageState"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/timeTV"
+        app:layout_constraintTop_toTopOf="@+id/timeTV" />
+
+    <TextView
+        android:id="@+id/timeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="13dp"
+        android:text="Time"
+        android:textSize="15sp"
+        android:textColor="@color/textMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/messageCounter"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_counter"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_medium"
+        android:text="1"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/timeTV"
+        app:layout_constraintTop_toBottomOf="@+id/timeTV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
