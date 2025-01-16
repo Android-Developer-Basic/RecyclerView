@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <FrameLayout
+        android:id="@+id/avatarBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:contentDescription="@string/avatar"
+            android:src="@drawable/avatar_1" />
+
+        <ImageView
+            android:id="@+id/avatarActionIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end|bottom"
+            android:background="@drawable/border_image"
+            android:contentDescription="@string/avatar_action_icon"
+            android:padding="2dp"
+            android:src="@drawable/avatar_action_icon" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/TextBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avatarBlock"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lockIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="5dp"
+                android:contentDescription="@string/lock_icon"
+                android:src="@drawable/lock_icon" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/title"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/verifiedIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@string/lock_icon"
+                android:src="@drawable/verified_icon" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/messageAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/message_author"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/previewIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/preview"
+                android:src="@drawable/preview_1" />
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:text="@string/message"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/serviceTopBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TextBlock"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/checkIcon"
+            android:layout_width="12dp"
+            android:layout_height="8dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/check_icon"
+            android:src="@drawable/check_icon" />
+
+        <TextView
+            android:id="@+id/timeService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/time" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/serviceBottomBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/avatarBlock"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <FrameLayout
+            android:id="@+id/mentionBlock"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/round_shape"
+            android:backgroundTint="@color/mentionBg">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/mention_icon"
+                android:src="@drawable/mention_icon" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/pinnedIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/pinned_icon"
+            android:src="@drawable/pinned_icon" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

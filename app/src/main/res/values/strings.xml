@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+    <string name="avatar">avatar</string>
+    <string name="title">title</string>
+    <string name="verified">verified</string>
+    <string name="preview">preview</string>
+    <string name="message">message</string>
+    <string name="message_author">message author</string>
+    <string name="lock_icon">lock Icon</string>
+    <string name="check_icon">check icon</string>
+    <string name="time">11:00</string>
+    <string name="mention_icon">mention icon</string>
+    <string name="pinned_icon">pinned icon</string>
+    <string name="avatar_action_icon">avatar action icon</string>
 </resources>
