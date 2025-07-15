@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item android:state_activated="true">
+            <shape android:shape="oval">
+                <solid android:color="#C5C9CC" /> <!-- Синий цвет, можно заменить на свой -->
+                <size android:width="32dp" android:height="32dp" /> <!-- Размер круга -->
+            </shape>
+        </item>
+        <item>
+            <shape android:shape="oval">
+                <solid android:color="#3D95D4" /> <!-- Синий цвет, можно заменить на свой -->
+                <size android:width="32dp" android:height="32dp" /> <!-- Размер круга -->
+            </shape>
+        </item>
+</selector>
