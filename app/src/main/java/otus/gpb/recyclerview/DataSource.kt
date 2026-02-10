@@ -84,5 +84,11 @@ class DataSource {
         )
     )
 
-    fun getMessages(): List<Chat> = messagesList
+    fun getMessages(page: Int, pageSize: Int): List<Chat> {
+        val fromIndex = page * pageSize
+        val toIndex = minOf(fromIndex + pageSize, messagesList.size)
+        if (fromIndex >= messagesList.size) return emptyList()
+
+        return messagesList.subList(fromIndex, toIndex)
+    }
 }

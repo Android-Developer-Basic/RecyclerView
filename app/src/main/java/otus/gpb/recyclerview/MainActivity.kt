@@ -13,47 +13,72 @@ class MainActivity : AppCompatActivity(), MessagesAdapterListener {
     private lateinit var layoutManager: LinearLayoutManager
 
     private val messagesAdapter by lazy { MessagesAdapter() }
-    private val messagesListDataSource = DataSource().getMessages()
+    private val messagesListDataSource = DataSource()
 
-    private val messagesList = mutableListOf<Chat>()
+    private val pageSize = 7
+    private var currentPage = 0
+    private var isLastPage = false
+
+    private lateinit var scrollListener: ScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recycleView = findViewById<RecyclerView>(R.id.recyclerView)
+        recycleView = findViewById(R.id.recyclerView)
         layoutManager = LinearLayoutManager(this)
+
         recycleView.layoutManager = layoutManager
-        recycleView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        ItemTouchHelper(ItemTouchHelperCallback(this)).attachToRecyclerView(recycleView)
+        recycleView.adapter = messagesAdapter
+        recycleView
+            .addItemDecoration(
+                DividerItemDecoration(
+                    this,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
 
-        messagesList.addAll(messagesListDataSource)
+        ItemTouchHelper(ItemTouchHelperCallback(this))
+            .attachToRecyclerView(recycleView)
 
-        updateRecyclerView(messagesList)
+        loadFirstPage()
 
-        val scrollListener = ScrollListener(layoutManager) {
-            loadMoreMessages()
+        scrollListener = ScrollListener(layoutManager) {
+            loadNextPage()
         }
+
         recycleView.addOnScrollListener(scrollListener)
+
+    }
+
+    private fun loadFirstPage() {
+        val firstPage = messagesListDataSource.getMessages(page = currentPage, pageSize = pageSize)
+        messagesAdapter.submitList(firstPage)
+        currentPage++
+    }
+
+    private fun loadNextPage() {
+        if (isLastPage) return
+
+        val nextPage = messagesListDataSource.getMessages(page = currentPage, pageSize = pageSize)
+
+        if (nextPage.isEmpty()) {
+            isLastPage = true
+            scrollListener.onLoadFinished()
+            return
+        }
+
+        val newList = messagesAdapter.currentList.toMutableList()
+        newList.addAll(nextPage)
+        messagesAdapter.submitList(newList)
+        currentPage++
+
         scrollListener.onLoadFinished()
     }
 
     override fun onItemSwipe(position: Int) {
-        val newList = messagesList.toMutableList()
+        val newList = messagesAdapter.currentList.toMutableList()
         newList.removeAt(position)
-        messagesList.clear()
-        messagesList.addAll(newList)
-
-        updateRecyclerView(messagesList)
-    }
-
-    private fun updateRecyclerView(messagesList: List<Chat>) {
-        messagesAdapter.submitList(messagesList)
-        recycleView.adapter = messagesAdapter
-    }
-
-    private fun loadMoreMessages() {
-        messagesList.addAll(messagesListDataSource)
-        updateRecyclerView(messagesList)
+        messagesAdapter.submitList(newList)
     }
 }

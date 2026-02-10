@@ -16,7 +16,7 @@ class ScrollListener(
         val totalItemCount = layoutManager.itemCount
         val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
 
-        val isAtEnd = lastVisibleItem >= totalItemCount - 3
+        val isAtEnd = lastVisibleItem >= totalItemCount - 1
 
         if (!isLoading && isAtEnd) {
             isLoading = true
