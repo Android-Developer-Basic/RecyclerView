@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="chat_item_height">80dp</dimen>
+    <dimen name="chat_avatar_size">57dp</dimen>
+    <dimen name="chat_icon_size">18dp</dimen>
+    <dimen name="chat_badge_size">24dp</dimen>
+    <dimen name="chat_text_start">12dp</dimen>
+    <dimen name="chat_edge_margin">13dp</dimen>
+    <!--
+        Вертикальные отступы текста. В макете строки 19/17/18dp с промежутками 3/4dp,
+        но реальные строки шрифта на 2–3dp выше, поэтому промежутки уменьшены на эту разницу:
+        у групповой ячейки сверху и снизу остаётся примерно по 8dp, как в макете
+    -->
+    <dimen name="chat_content_vertical_margin">8dp</dimen>
+    <dimen name="chat_author_margin_top">1dp</dimen>
+    <dimen name="chat_message_margin_top">2dp</dimen>
+    <dimen name="chat_message_gone_margin_top">3dp</dimen>
+    <dimen name="chat_divider_height">1px</dimen>
+    <dimen name="chat_divider_inset_start">73dp</dimen>
+</resources>
