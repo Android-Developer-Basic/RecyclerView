@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "RecyclerView"
 include ':app'
+include ':app-compose'
+include ':core'
