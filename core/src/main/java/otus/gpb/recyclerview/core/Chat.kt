@@ -1,4 +1,4 @@
-package otus.gpb.recyclerview
+package otus.gpb.recyclerview.core
 
 import androidx.annotation.ColorInt
 

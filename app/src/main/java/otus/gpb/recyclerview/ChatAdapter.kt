@@ -11,6 +11,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import otus.gpb.recyclerview.core.R as CoreR
+import otus.gpb.recyclerview.core.Chat
+import otus.gpb.recyclerview.core.MessageStatus
 
 class ChatAdapter : ListAdapter<Chat, ChatAdapter.ChatViewHolder>(ChatDiffCallback) {
 
@@ -51,8 +54,8 @@ class ChatAdapter : ListAdapter<Chat, ChatAdapter.ChatViewHolder>(ChatDiffCallba
 
             status.isVisible = chat.status != MessageStatus.NONE
             when (chat.status) {
-                MessageStatus.SENT -> status.setImageResource(R.drawable.ic_check)
-                MessageStatus.READ -> status.setImageResource(R.drawable.ic_double_check)
+                MessageStatus.SENT -> status.setImageResource(CoreR.drawable.ic_check)
+                MessageStatus.READ -> status.setImageResource(CoreR.drawable.ic_double_check)
                 MessageStatus.NONE -> Unit
             }
             time.text = chat.time
@@ -68,7 +71,7 @@ class ChatAdapter : ListAdapter<Chat, ChatAdapter.ChatViewHolder>(ChatDiffCallba
             pinned.isVisible = chat.isPinned && chat.unreadCount == 0
             counter.isVisible = chat.unreadCount > 0
             counter.text = chat.unreadCount.toString()
-            val counterColor = if (chat.isMuted) R.color.chat_counter_muted else R.color.chat_accent
+            val counterColor = if (chat.isMuted) CoreR.color.chat_counter_muted else CoreR.color.chat_accent
             counter.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, counterColor))
         }
 

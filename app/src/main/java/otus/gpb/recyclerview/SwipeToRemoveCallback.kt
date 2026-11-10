@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.withClip
+import otus.gpb.recyclerview.core.R as CoreR
 
 /**
  * Свайп влево: под ячейкой открывается красная плашка «Remove», при полном свайпе ячейка удаляется
@@ -22,9 +23,9 @@ class SwipeToRemoveCallback(
 ) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val background =
-        ContextCompat.getColor(context, R.color.chat_swipe_background).toDrawable()
-    private val icon = requireNotNull(ContextCompat.getDrawable(context, R.drawable.ic_delete))
-    private val label = context.getString(R.string.remove)
+        ContextCompat.getColor(context, CoreR.color.chat_swipe_background).toDrawable()
+    private val icon = requireNotNull(ContextCompat.getDrawable(context, CoreR.drawable.ic_delete))
+    private val label = context.getString(CoreR.string.remove)
     private val iconSize = context.dp(24f).toInt()
     private val iconTop = context.dp(18f).toInt()
     private val labelBaseline = context.dp(62f)

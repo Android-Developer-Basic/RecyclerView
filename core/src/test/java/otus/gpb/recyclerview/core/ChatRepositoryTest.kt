@@ -1,4 +1,4 @@
-package otus.gpb.recyclerview
+package otus.gpb.recyclerview.core
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

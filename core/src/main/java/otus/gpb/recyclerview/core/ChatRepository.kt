@@ -1,4 +1,4 @@
-package otus.gpb.recyclerview
+package otus.gpb.recyclerview.core
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

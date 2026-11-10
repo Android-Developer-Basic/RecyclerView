@@ -6,16 +6,4 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <color name="chat_background">#FFFFFFFF</color>
-    <color name="chat_text_primary">#FF222222</color>
-    <color name="chat_text_secondary">#FF8D8E90</color>
-    <color name="chat_accent">#FF4CA3E0</color>
-    <color name="chat_icon_secondary">#FFC1C3C5</color>
-    <color name="chat_read_check">#FF46A84B</color>
-    <color name="chat_scam">#FFE53935</color>
-    <color name="chat_counter_muted">#FFC4C9CC</color>
-    <color name="chat_divider">#FFE5E5E5</color>
-    <color name="chat_swipe_background">#FFE53935</color>
 </resources>

@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">RecyclerView</string>
-    <string name="remove">Remove</string>
-    <string name="scam">SCAM</string>
 </resources>

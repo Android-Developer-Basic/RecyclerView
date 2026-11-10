@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDateTime
+import otus.gpb.recyclerview.core.Chat
+import otus.gpb.recyclerview.core.ChatRepository
 
 class MainActivity : AppCompatActivity() {
 

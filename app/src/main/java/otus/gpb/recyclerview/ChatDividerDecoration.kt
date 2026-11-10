@@ -7,13 +7,14 @@ import android.graphics.Rect
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import otus.gpb.recyclerview.core.R as CoreR
 
 /**
  * Разделитель под каждой ячейкой, начинается после аватара
  */
 class ChatDividerDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private val paint = Paint().apply { color = ContextCompat.getColor(context, R.color.chat_divider) }
+    private val paint = Paint().apply { color = ContextCompat.getColor(context, CoreR.color.chat_divider) }
     private val dividerHeight = context.resources.getDimensionPixelSize(R.dimen.chat_divider_height)
     private val insetStart = context.resources.getDimensionPixelSize(R.dimen.chat_divider_inset_start)
 
